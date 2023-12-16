@@ -10,10 +10,14 @@ using UnityEngine.InputSystem.Controls;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private HandMovement handMovement;
+    [SerializeField] private HandMovement leftHandMovement;
+    [SerializeField] private RightHandMovement rightHandMovement;
     public void LeftHandMovement(InputAction.CallbackContext context)
     {
-        handMovement.Move(context.ReadValue<Vector2>().x);
+        leftHandMovement.Move(context.ReadValue<Vector2>().x);
     }
-
+    public void RightHandMovement(InputAction.CallbackContext context)
+    {
+        rightHandMovement.moving = context.performed;
+    }
 }

@@ -5,7 +5,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class HandMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     
     [SerializeField]
     private float speed = 10.0f;

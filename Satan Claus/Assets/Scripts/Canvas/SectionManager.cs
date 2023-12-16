@@ -9,6 +9,7 @@ public enum CanvasType
     MainMenu,
     CookingMenu,
     DialogMenu,
+    CleaningMenu
 }
 
 

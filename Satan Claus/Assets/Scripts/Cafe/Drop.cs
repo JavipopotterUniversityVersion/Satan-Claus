@@ -7,7 +7,6 @@ public enum TypeOfDrop
 
 public class Drop : MonoBehaviour
 {
-    
     [SerializeField] TypeOfDrop _type;
     Container container;
     TypeOfDrop type
@@ -31,9 +30,20 @@ public class Drop : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other == container)
+        if(other.gameObject == container.gameObject)
         {
+            container.numberOfDrops[(int) type]--;
             container = null;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.TryGetComponent(out Drop drop) && type == TypeOfDrop.lava)
+        {
+            if(drop.type == TypeOfDrop.souls)
+            {
+                type = TypeOfDrop.souls;
+            }
         }
     }
 }

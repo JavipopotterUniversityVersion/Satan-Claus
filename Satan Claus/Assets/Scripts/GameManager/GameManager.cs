@@ -9,25 +9,15 @@ public enum GameState
     Cutscene,
     Cafe,
     Talking,
-    Cooking
+    Cooking,
+    Cleaning
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
-    public Transform backGrounds;
-    public GameObject gameElementsContainer;
-    [SerializeField] int _money = 0;
-    public int money
-    {
-        get{return _money;}
-        set{
-            _money = value;
-        }
-    }
     GameState stateHolder;
     public GameState gameState;
-    [HideInInspector] public UnityEvent OnStartLevel;
     [HideInInspector] public UnityEvent<GameState> OnStateEnter;
     [HideInInspector] public UnityEvent<GameState> OnStateExit;
 

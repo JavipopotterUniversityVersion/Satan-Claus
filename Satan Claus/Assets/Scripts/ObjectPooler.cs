@@ -15,8 +15,14 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] GameObject[] OBJECTS_TO_INSTANTIATE;
     [SerializeField] Transform gameElementsContainer;
     List<List<GameObject>> objects;
-
     private void Awake() {
+        objects = new List<List<GameObject>>()
+        {
+            new List<GameObject>(),
+            new List<GameObject>(),
+            new List<GameObject>()
+        };
+
         if(pooler == null)
         {
             pooler = this;
@@ -33,7 +39,7 @@ public class ObjectPooler : MonoBehaviour
     {
         for(int a = 0; a < OBJECTS_TO_INSTANTIATE.Length; a++)
         {
-            for(int quantity = 0; quantity < 100; quantity++)
+            for(int quantity = 0; quantity < 1000; quantity++)
             {
                 var obj = Instantiate(OBJECTS_TO_INSTANTIATE[a], gameElementsContainer);
                 obj.SetActive(false);
@@ -53,6 +59,6 @@ public class ObjectPooler : MonoBehaviour
                 return obj;
             }
         }
-        return null;
+        return objects[(int)key][Random.Range(0, objects[(int)key].Count)];
     }
 }

@@ -31,7 +31,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""86fd523e-305e-480f-adfb-2221ea637a77"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -59,9 +59,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""0bb9cec7-f43c-4644-90a8-5200db4ed025"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""f8e62978-0589-4d98-af9e-2ef150ad3fd5"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -70,9 +70,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""24ce2bcb-ea2b-4ebb-93b1-955328aa0f0e"",
-                    ""path"": ""<Keyboard>/0"",
+                    ""name"": ""left"",
+                    ""id"": ""d0708997-3601-443c-8f10-9eded0a339ce"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -81,9 +81,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""494f4f43-8e61-40de-b276-8004ee6ef9b4"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""name"": ""right"",
+                    ""id"": ""401beb3d-c5ca-4f8d-99bf-c734f545b832"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

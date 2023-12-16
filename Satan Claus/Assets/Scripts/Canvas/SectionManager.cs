@@ -36,12 +36,24 @@ public class SectionManager : MonoBehaviour
 
     void ActivateCanvas(CanvasType desiredType)
     { 
-        SectionControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(true);
+        foreach(SectionController sectionController in SectionControllerList)
+        {
+            if(sectionController.type == desiredType)
+            {
+                sectionController.gameObject.SetActive(true);
+            }
+        }
     }
 
     void DeactivateCanvas(CanvasType desiredType)
     {
-        SectionControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(false);
+        foreach(SectionController sectionController in SectionControllerList)
+        {
+            if(sectionController.type == desiredType)
+            {
+                sectionController.gameObject.SetActive(false);
+            }
+        }
     }
 
     void DeactivateAllCanvases()
@@ -55,11 +67,33 @@ public class SectionManager : MonoBehaviour
 
     void OnStateExit(GameState state)
     {
-       
+        switch(state)
+        {
+            case GameState.MainMenu:
+                DeactivateCanvas(CanvasType.MainMenu);
+                break;
+            case GameState.Dialog:
+                DeactivateCanvas(CanvasType.DialogMenu);
+                break;
+            case GameState.Cooking:
+                DeactivateCanvas(CanvasType.CookingMenu);
+                break;
+        }
     }
     void OnStateEnter(GameState state)
     {
-        
+        switch(state)
+        {
+            case GameState.MainMenu:
+                ActivateCanvas(CanvasType.MainMenu);
+                break;
+            case GameState.Dialog:
+                ActivateCanvas(CanvasType.DialogMenu);
+                break;
+            case GameState.Cooking:
+                ActivateCanvas(CanvasType.CookingMenu);
+                break;
+        }   
     }
 
     private void OnDestroy() {

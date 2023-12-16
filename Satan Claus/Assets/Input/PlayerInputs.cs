@@ -28,7 +28,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ""id"": ""af2cbf55-412a-4123-b5de-3fa27f3f48d9"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""LeftHandMove"",
                     ""type"": ""Value"",
                     ""id"": ""86fd523e-305e-480f-adfb-2221ea637a77"",
                     ""expectedControlType"": ""Vector2"",
@@ -46,7 +46,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveRight"",
+                    ""name"": ""RightHandMove"",
                     ""type"": ""Button"",
                     ""id"": ""d24bffec-fb62-4e1a-b820-3517a7823a62"",
                     ""expectedControlType"": ""Button"",
@@ -74,7 +74,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""LeftHandMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -85,7 +85,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""LeftHandMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -96,7 +96,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""LeftHandMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -107,7 +107,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveRight"",
+                    ""action"": ""RightHandMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -118,9 +118,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 }");
         // LeftHand
         m_LeftHand = asset.FindActionMap("LeftHand", throwIfNotFound: true);
-        m_LeftHand_Move = m_LeftHand.FindAction("Move", throwIfNotFound: true);
+        m_LeftHand_LeftHandMove = m_LeftHand.FindAction("LeftHandMove", throwIfNotFound: true);
         m_LeftHand_Interact = m_LeftHand.FindAction("Interact", throwIfNotFound: true);
-        m_LeftHand_MoveRight = m_LeftHand.FindAction("MoveRight", throwIfNotFound: true);
+        m_LeftHand_RightHandMove = m_LeftHand.FindAction("RightHandMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -182,16 +182,16 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     // LeftHand
     private readonly InputActionMap m_LeftHand;
     private List<ILeftHandActions> m_LeftHandActionsCallbackInterfaces = new List<ILeftHandActions>();
-    private readonly InputAction m_LeftHand_Move;
+    private readonly InputAction m_LeftHand_LeftHandMove;
     private readonly InputAction m_LeftHand_Interact;
-    private readonly InputAction m_LeftHand_MoveRight;
+    private readonly InputAction m_LeftHand_RightHandMove;
     public struct LeftHandActions
     {
         private @PlayerInputs m_Wrapper;
         public LeftHandActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_LeftHand_Move;
+        public InputAction @LeftHandMove => m_Wrapper.m_LeftHand_LeftHandMove;
         public InputAction @Interact => m_Wrapper.m_LeftHand_Interact;
-        public InputAction @MoveRight => m_Wrapper.m_LeftHand_MoveRight;
+        public InputAction @RightHandMove => m_Wrapper.m_LeftHand_RightHandMove;
         public InputActionMap Get() { return m_Wrapper.m_LeftHand; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -201,28 +201,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_LeftHandActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_LeftHandActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @LeftHandMove.started += instance.OnLeftHandMove;
+            @LeftHandMove.performed += instance.OnLeftHandMove;
+            @LeftHandMove.canceled += instance.OnLeftHandMove;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @MoveRight.started += instance.OnMoveRight;
-            @MoveRight.performed += instance.OnMoveRight;
-            @MoveRight.canceled += instance.OnMoveRight;
+            @RightHandMove.started += instance.OnRightHandMove;
+            @RightHandMove.performed += instance.OnRightHandMove;
+            @RightHandMove.canceled += instance.OnRightHandMove;
         }
 
         private void UnregisterCallbacks(ILeftHandActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @LeftHandMove.started -= instance.OnLeftHandMove;
+            @LeftHandMove.performed -= instance.OnLeftHandMove;
+            @LeftHandMove.canceled -= instance.OnLeftHandMove;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @MoveRight.started -= instance.OnMoveRight;
-            @MoveRight.performed -= instance.OnMoveRight;
-            @MoveRight.canceled -= instance.OnMoveRight;
+            @RightHandMove.started -= instance.OnRightHandMove;
+            @RightHandMove.performed -= instance.OnRightHandMove;
+            @RightHandMove.canceled -= instance.OnRightHandMove;
         }
 
         public void RemoveCallbacks(ILeftHandActions instance)
@@ -242,8 +242,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public LeftHandActions @LeftHand => new LeftHandActions(this);
     public interface ILeftHandActions
     {
-        void OnMove(InputAction.CallbackContext context);
+        void OnLeftHandMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnMoveRight(InputAction.CallbackContext context);
+        void OnRightHandMove(InputAction.CallbackContext context);
     }
 }

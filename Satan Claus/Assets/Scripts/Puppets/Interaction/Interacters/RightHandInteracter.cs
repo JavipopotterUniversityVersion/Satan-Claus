@@ -5,7 +5,7 @@ using UnityEngine;
 public class RightHandInteracter : InteractionManager
 {
     private void OnTriggerEnter2D(Collider2D other) {
-        if (TryGetComponent(out ClientDialogHandler clientDialog))
+        if (other.TryGetComponent(out StateChangerInteractable clientDialog))
         {   
             DetectInteractable(clientDialog);
         }

@@ -1,12 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting.InputSystem;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Composites;
-using UnityEngine.InputSystem.Controls;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,6 +11,15 @@ public class InputManager : MonoBehaviour
     }
     public void RightHandMovement(InputAction.CallbackContext context)
     {
-        rightHandMovement.moving = context.performed;
+        if(context.performed)
+        {
+            print("RightHandMovement");
+            rightHandMovement.moving = true;
+        }
+        else if(context.canceled)
+        {
+             print("RightHandMovement'nt");
+            rightHandMovement.moving = false;
+        }
     }
 }

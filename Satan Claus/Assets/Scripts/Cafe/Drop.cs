@@ -9,7 +9,7 @@ public class Drop : MonoBehaviour
 {
     [SerializeField] TypeOfDrop _type;
     Container container;
-    TypeOfDrop type
+    public TypeOfDrop type
     {
         get{return _type;}
         set

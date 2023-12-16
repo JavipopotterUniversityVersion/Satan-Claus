@@ -4,9 +4,7 @@ using UnityEngine;
 
 public enum entity
 {
-    lava,
-    salt,
-    virginBlood
+    drop
 }
 
 public class ObjectPooler : MonoBehaviour
@@ -60,5 +58,16 @@ public class ObjectPooler : MonoBehaviour
             }
         }
         return objects[(int)key][Random.Range(0, objects[(int)key].Count)];
+    }
+
+    public void Restart()
+    {
+        foreach(List<GameObject> list in objects)
+        {
+            foreach(GameObject obj in list)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 }

@@ -12,16 +12,16 @@ public enum CanvasType
 }
 
 
-public class CanvasManager : MonoBehaviour
+public class SectionManager : MonoBehaviour
 {
-    public static CanvasManager canvas;
-    List<CanvasController> canvasControllerList;
+    public static SectionManager canvas;
+    [SerializeField] List<SectionController> SectionControllerList;
 
     private void Awake() {
 
-        if(canvas == null) {canvas = this;} else {Destroy(gameObject);}
+        canvas = this;
 
-        canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
+        SectionControllerList = GetComponentsInChildren<SectionController>().ToList();
         DeactivateAllCanvases();
     }
 
@@ -35,19 +35,19 @@ public class CanvasManager : MonoBehaviour
 
     void ActivateCanvas(CanvasType desiredType)
     { 
-        canvasControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(true);
+        SectionControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(true);
     }
 
     void DeactivateCanvas(CanvasType desiredType)
     {
-        canvasControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(false);
+        SectionControllerList.Find(canvas => canvas.type == desiredType).gameObject.SetActive(false);
     }
 
     void DeactivateAllCanvases()
     {
-        foreach(CanvasController canvasController in canvasControllerList)
+        foreach(SectionController SectionController in SectionControllerList)
         {
-            canvasController.gameObject.SetActive(false);
+            SectionController.gameObject.SetActive(false);
         }
     }
 

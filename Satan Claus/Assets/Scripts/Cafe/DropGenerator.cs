@@ -8,8 +8,8 @@ public class DropGenerator : MonoBehaviour
     [SerializeField] entity drop;
     [SerializeField] Transform dropPosition;
 
-    public void GenerateDrop()
+    public Drop GenerateDrop()
     {
-        GameObject obj = ObjectPooler.pooler.GetObject(drop, dropPosition.position).gameObject;
+        return ObjectPooler.pooler.GetObject(drop, dropPosition.position).GetComponent<Drop>();
     }
 }

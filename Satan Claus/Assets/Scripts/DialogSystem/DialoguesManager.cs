@@ -11,7 +11,6 @@ using UnityEngine.Events;
 public class DialoguesManager : MonoBehaviour
 {
     public static DialoguesManager dialoguesManager;
-    public GameObject dialogueUI;
     public Animator dialogueUiAn;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI text;
@@ -35,7 +34,6 @@ public class DialoguesManager : MonoBehaviour
     private void Awake() {
         dialoguesManager = this;
         pass.action.performed += OnPassActionPerformed;
-        dialogueUiAn = dialogueUI.GetComponent<Animator>();
         for(int i = 0; i < img_sources_keys.Length; i++)
         {
             img_sources_dict.Add(img_sources_keys[i], img_sources[i]);
@@ -77,16 +75,16 @@ public class DialoguesManager : MonoBehaviour
 
     IEnumerator _ExecuteDialog(string key)
     {
+        GameManager.GM.ChangeStateOfGame(GameState.Talking);
         OnDialogNotPerforming?.Invoke(false);
         text.text = "";
         // InputManager.input.enabled =  false;
         pass.action.Enable();
         if(key == "")
         {
-            dialogueUI.SetActive(false);
+            GameManager.GM.ChangeStateOfGame(GameState.Cafe);
             yield break;
         }
-        dialogueUI.SetActive(true);
         foreach(string line in key.Split("*"))
         {
             next = false;
@@ -128,7 +126,7 @@ public class DialoguesManager : MonoBehaviour
             {
                 OnDialogNotPerforming?.Invoke(true);
                 cinematic = false;
-                dialogueUI.SetActive(false);
+                GameManager.GM.ChangeStateOfGame(GameState.Cafe);
                 break;
             }
 

@@ -16,7 +16,8 @@ public class LiquidGenerator : DropGenerator
     private void Update() {
         if(container.numberOfDrops[(int) typeOfDrop] < minDropAmount)
         {
-            GenerateDrop();
+            Drop drop = GenerateDrop();
+            drop.type = typeOfDrop;
         }
     }
 }

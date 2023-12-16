@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 423015529869918369}
   - component: {fileID: 3691380629282375297}
   - component: {fileID: 1215018957789531199}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2626152543097725834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06860351, y: 0.06860351, z: 0.06860351}
+  m_LocalScale: {x: 0.05223128, y: 0.05223128, z: 0.05223128}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 168536642357880556}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 168536642357880556}
   - component: {fileID: 2155606400660683097}
   - component: {fileID: 6229676043899404287}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

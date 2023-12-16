@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasController : MonoBehaviour
+public class SectionController : MonoBehaviour
 {
     public CanvasType type;
 }

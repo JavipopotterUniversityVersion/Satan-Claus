@@ -19,9 +19,26 @@ public class Drageable : MonoBehaviour
 	public bool m_DrawDragLine = true;
 	public Color m_Color = Color.cyan;
 
-	private TargetJoint2D m_TargetJoint;
+	public TargetJoint2D m_TargetJoint;
 
-	void Update ()
+	static private Drageable _thisDrageable;
+	static public Drageable drageable
+	{
+		get { return _thisDrageable; }
+	}
+
+    private void Awake()
+    {
+        if (_thisDrageable == null)
+		{
+			_thisDrageable = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+    }
+    void Update ()
 	{
 		// Calculate the world position for the mouse.
 		var worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);

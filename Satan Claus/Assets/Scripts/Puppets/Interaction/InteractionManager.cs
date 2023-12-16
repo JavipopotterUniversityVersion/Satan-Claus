@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public abstract class InteractionManager : MonoBehaviour
 {
-    public UnityEvent<Vector2> CanInteract = new UnityEvent<Vector2>();
+    public UnityEvent<IInteractable> CanInteract = new UnityEvent<IInteractable>();
 
-    public void DetectInteractable(Vector2 position)
+    public void DetectInteractable(IInteractable interactable)
     {
-        CanInteract?.Invoke(position);
+        CanInteract?.Invoke(interactable);
     }
 }
 

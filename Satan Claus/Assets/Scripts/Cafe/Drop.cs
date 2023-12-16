@@ -22,7 +22,7 @@ public class Drop : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter2D(Collider other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.TryGetComponent(out Container container))
         {
             this.container = container;

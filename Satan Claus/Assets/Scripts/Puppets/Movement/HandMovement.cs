@@ -11,7 +11,7 @@ public class HandMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Moverse(int value)
+    public void Move(int value)
     {
          rb.velocity = Vector2.right * speed * value;
     }

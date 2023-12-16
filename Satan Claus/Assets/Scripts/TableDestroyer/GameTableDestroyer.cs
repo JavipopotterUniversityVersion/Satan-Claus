@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameTableDestroyer : MonoBehaviour
 {
     [SerializeField] GameObject rubbish;
+    [SerializeField] GameObject brokenTable;
     private int hits = 0;
     
     public void GenerateSomeRubbish()
@@ -31,6 +32,7 @@ public class GameTableDestroyer : MonoBehaviour
     }
     public void DestroyTable()
     {
-
+        gameObject.SetActive(false);
+        Instantiate(brokenTable, transform.position, Quaternion.identity);
     }
 }

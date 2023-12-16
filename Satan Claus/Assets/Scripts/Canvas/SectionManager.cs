@@ -78,6 +78,9 @@ public class SectionManager : MonoBehaviour
             case GameState.Cooking:
                 DeactivateCanvas(CanvasType.CookingMenu);
                 break;
+            case GameState.Cleaning:
+                DeactivateCanvas(CanvasType.CleaningMenu);
+                break;
         }
     }
     void OnStateEnter(GameState state)
@@ -92,6 +95,9 @@ public class SectionManager : MonoBehaviour
                 break;
             case GameState.Cooking:
                 ActivateCanvas(CanvasType.CookingMenu);
+                break;
+            case GameState.Cleaning:
+                ActivateCanvas(CanvasType.CleaningMenu);
                 break;
         }   
     }

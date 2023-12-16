@@ -15,8 +15,10 @@ public class Drop : MonoBehaviour
         set
         {
             if(container != null)
+            {
                 container.numberOfDrops[(int) _type]--;
                 container.numberOfDrops[(int) value]++;
+            }
             _type = value;
         }
     }

@@ -22,7 +22,6 @@ public class DialoguesManager : MonoBehaviour
     Dictionary<string, Sprite> img_sources_dict = new Dictionary<string, Sprite>();
     public GameObject UIpointer;
     public string[] choices;
-    public bool cinematic;
     [SerializeField] GameObject storyTeller;
     bool next;
     public bool skipDialog;
@@ -75,7 +74,7 @@ public class DialoguesManager : MonoBehaviour
 
     IEnumerator _ExecuteDialog(string key)
     {
-        GameManager.GM.ChangeStateOfGame(GameState.Talking);
+        GameManager.GM.ChangeStateOfGame(GameState.Dialog);
         OnDialogNotPerforming?.Invoke(false);
         text.text = "";
         // InputManager.input.enabled =  false;
@@ -118,14 +117,12 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[NOCINE]"))
             {
-                cinematic = false;
                 continue;
             }
 
             if(line.Contains("[END]"))
             {
                 OnDialogNotPerforming?.Invoke(true);
-                cinematic = false;
                 GameManager.GM.ChangeStateOfGame(GameState.Cafe);
                 break;
             }

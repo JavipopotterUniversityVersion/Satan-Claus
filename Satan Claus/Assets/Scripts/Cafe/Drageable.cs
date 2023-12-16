@@ -19,7 +19,7 @@ public class Drageable : MonoBehaviour
 	public bool m_DrawDragLine = true;
 	public Color m_Color = Color.cyan;
 
-	private TargetJoint2D m_TargetJoint;
+	public TargetJoint2D m_TargetJoint;
 
 	void Update ()
 	{

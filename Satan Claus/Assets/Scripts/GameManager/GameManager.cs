@@ -6,9 +6,8 @@ using UnityEngine.Events;
 public enum GameState
 {
     MainMenu,
-    Cutscene,
     Cafe,
-    Talking,
+    Dialog,
     Cooking,
     Cleaning
 }
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
     GameState stateHolder;
-    public GameState gameState;
+    GameState gameState;
     [HideInInspector] public UnityEvent<GameState> OnStateEnter;
     [HideInInspector] public UnityEvent<GameState> OnStateExit;
 
@@ -27,8 +26,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeStateOfGame(GameState newState)
     {
+        OnStateExit?.Invoke(gameState);
         OnStateEnter?.Invoke(newState);
-
         gameState = newState;
     }
 }

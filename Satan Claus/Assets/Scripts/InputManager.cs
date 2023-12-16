@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private HandMovement leftHandMovement;
     [SerializeField] private RightHandMovement rightHandMovement;
     PlayerInput playerInput;
+    [SerializeField] private InteractionHandler interactionHandler;
 
     private void Awake() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
@@ -41,10 +42,17 @@ public class InputManager : MonoBehaviour
             print("RightHandMovement");
             rightHandMovement.moving = true;
         }
-        else if(context.canceled)
+        else if(context.canceled || Drageable.drageable.m_TargetJoint != null)
         {
              print("RightHandMovement'nt");
             rightHandMovement.moving = false;
+        }
+    }
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            interactionHandler.Interact();
         }
     }
 }

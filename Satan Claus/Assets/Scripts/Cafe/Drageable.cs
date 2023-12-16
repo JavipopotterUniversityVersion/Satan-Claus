@@ -21,7 +21,24 @@ public class Drageable : MonoBehaviour
 
 	public TargetJoint2D m_TargetJoint;
 
-	void Update ()
+	static private Drageable _thisDrageable;
+	static public Drageable drageable
+	{
+		get { return _thisDrageable; }
+	}
+
+    private void Awake()
+    {
+        if (_thisDrageable == null)
+		{
+			_thisDrageable = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+    }
+    void Update ()
 	{
 		// Calculate the world position for the mouse.
 		var worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);

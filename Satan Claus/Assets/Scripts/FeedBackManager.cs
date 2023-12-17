@@ -6,15 +6,17 @@ public class FeedBackManager : MonoBehaviour
 {
     LeftHandInteracter _leftHandInteracter;
     RightHandInteracter _rightHandInteracter;
-    GameObject[] feedBackButtons;
+    [SerializeField] GameObject[] feedBackButtons;
 
     public void Start()
     {
         _leftHandInteracter = FindObjectOfType<LeftHandInteracter>();
         _leftHandInteracter.CanInteract.AddListener(OnCanTalk);
+        _leftHandInteracter.CantInteract.AddListener((IInteractable interactable) => feedBackButtons[0].SetActive(false));
 
         _rightHandInteracter = FindObjectOfType<RightHandInteracter>();
         _rightHandInteracter.CanInteract.AddListener(OnCanCook);
+        _rightHandInteracter.CantInteract.AddListener((IInteractable interactable) => feedBackButtons[1].SetActive(false));
     }
 
     void OnCanTalk(IInteractable interactable)

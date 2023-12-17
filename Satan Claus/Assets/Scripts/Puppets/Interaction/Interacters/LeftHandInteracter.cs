@@ -10,4 +10,11 @@ public class LeftHandInteracter : InteractionManager
             DetectInteractable(clientDialog);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.TryGetComponent(out ClientDialogHandler clientDialog))
+        {
+            StopDetectingInteractable(clientDialog);
+        }
+    }
 }

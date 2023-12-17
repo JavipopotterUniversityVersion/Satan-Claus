@@ -9,7 +9,8 @@ public enum GameState
     Cafe,
     Dialog,
     Cooking,
-    Cleaning
+    Cleaning,
+    stateHolder
 }
 
 public class GameManager : MonoBehaviour
@@ -27,7 +28,17 @@ public class GameManager : MonoBehaviour
     public void ChangeStateOfGame(GameState newState)
     {
         OnStateExit?.Invoke(gameState);
+
+        switch(newState)
+        {
+            case GameState.stateHolder:
+                ChangeStateOfGame(stateHolder);
+                break;
+        }
+
         OnStateEnter?.Invoke(newState);
+
+        stateHolder = gameState;
         gameState = newState;
     }
 }

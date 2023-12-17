@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class ClientDialogHandler : MonoBehaviour, IInteractable
 {
-    string[] dialogues;
+    [SerializeField] string[] dialogues;
     public Transform myTransform => transform;
-    Container _container;
+    [SerializeField] CupInfo cupInfo;
     [SerializeField] int[] containerRequirements = new int[4];
-    
-    private void Awake() {
-        _container = FindObjectOfType<Container>();
-    }
 
     public void Interact()
     {
@@ -22,7 +18,6 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
         }
         else
         {
-            _container.ResetContainer();
             if(CheckRequirements())
             {
                 DialoguesManager.dialoguesManager.ExecuteDialogViaKey(dialogues[1]);
@@ -38,7 +33,7 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
     {
         for (int i = 0; i < containerRequirements.Length; i++)
         {
-            if(containerRequirements[i] > _container.numberOfDrops[i])
+            if(containerRequirements[i] > cupInfo.numberOfDrops[i])
             {
                 return false;
             }
@@ -48,9 +43,9 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
 
     bool CheckIfContainerIsEmpty()
     {
-        for (int i = 0; i < _container.numberOfDrops.Length; i++)
+        for (int i = 0; i < cupInfo.numberOfDrops.Length; i++)
         {
-            if(_container.numberOfDrops[i] > 0)
+            if(cupInfo.numberOfDrops[i] > 0)
             {
                 return false;
             }

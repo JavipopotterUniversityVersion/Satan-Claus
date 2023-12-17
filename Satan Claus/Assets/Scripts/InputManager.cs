@@ -6,11 +6,14 @@ public class InputManager : MonoBehaviour
     [SerializeField] private HandMovement leftHandMovement;
     [SerializeField] private RightHandMovement rightHandMovement;
     PlayerInput playerInput;
-    [SerializeField] private InteractionHandler interactionHandler;
+    private InteractionHandler interactionHandler;
+    bool canMove = true;
 
-    private void Awake() {
+    private void Start() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
+
+        interactionHandler = GetComponent<InteractionHandler>();
 
         playerInput = GetComponent<PlayerInput>();
     }
@@ -20,31 +23,33 @@ public class InputManager : MonoBehaviour
     {
         if(state != GameState.Cafe)
         {
-            // playerInput.enabled = true;
+            canMove = true;
         }
     }
     void OnStateEnter(GameState state)
     {
         if(state != GameState.Cafe)
         {
-            // playerInput.enabled = false;
+            canMove = false;
         }
     }
 
     public void LeftHandMovement(InputAction.CallbackContext context)
     {
+        if(!canMove) return;
+
         leftHandMovement.Move(context.ReadValue<Vector2>().x);
     }
     public void RightHandMovement(InputAction.CallbackContext context)
     {
+        if(!canMove) return;
+
         if(context.performed)
         {
-            print("RightHandMovement");
             rightHandMovement.moving = true;
         }
         else if(context.canceled || Drageable.drageable.m_TargetJoint != null)
         {
-             print("RightHandMovement'nt");
             rightHandMovement.moving = false;
         }
     }

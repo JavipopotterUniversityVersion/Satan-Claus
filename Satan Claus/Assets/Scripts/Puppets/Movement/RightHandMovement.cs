@@ -10,7 +10,7 @@ public class RightHandMovement : HandMovement
         get { return _moving; }
         set 
         { 
-            if (!value) rb.velocity = Vector3.zero;
+            if (!value) Move(0);
             _moving = value;
         }
     }

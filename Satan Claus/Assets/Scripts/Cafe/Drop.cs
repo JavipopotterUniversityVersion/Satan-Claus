@@ -8,6 +8,7 @@ public enum TypeOfDrop
 public class Drop : MonoBehaviour
 {
     [SerializeField] TypeOfDrop _type;
+    float timer = 3;
     Container container;
     public TypeOfDrop type
     {
@@ -23,6 +24,19 @@ public class Drop : MonoBehaviour
         }
     }
     
+    private void Update() {
+        if(timer <= 0)
+        {
+            timer = 3;
+            gameObject.SetActive(false);
+        }
+
+        if(container == null)
+        {
+            timer -= Time.deltaTime;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.TryGetComponent(out Container container))
         {
@@ -32,10 +46,13 @@ public class Drop : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject == container.gameObject)
+        if(container != null)
         {
-            container.numberOfDrops[(int) type]--;
-            container = null;
+            if(other.gameObject == container.gameObject)
+            {
+                container.numberOfDrops[(int) type]--;
+                container = null;
+            }
         }
     }
 

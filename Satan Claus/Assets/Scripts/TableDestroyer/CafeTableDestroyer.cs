@@ -1,41 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CafeTableDestroyer : MonoBehaviour
 {
     private bool canHit;
     private int tableState;
     [SerializeField] Sprite[] tableDestruction;
-    [SerializeField] SpriteRenderer sr;
+    SpriteRenderer sr;
+    GameTableDestroyer gameTableDestroyer;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bat") && collision.attachedRigidbody.angularVelocity > 5 && canHit)
+    private void Awake() {
+        sr = GetComponent<SpriteRenderer>();
+        gameTableDestroyer = FindObjectOfType<GameTableDestroyer>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.transform.CompareTag("Bat") && other.collider.attachedRigidbody.angularVelocity > 5 && canHit)
         {
             canHit = false;
             tableState++;
             DestroyTable();
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.CompareTag("Bat"))
+        if(collision.transform.CompareTag("Bat"))
         {
             canHit = true;
         }
     }
     private void DestroyTable()
     {
+        gameTableDestroyer.OnHitEnter();
         if (tableState == 6)
         {
-            OnTableDestroyed?.Invoke();
+            GameManager.GM.ChangeStateOfGame(GameState.Cafe);
         }
         else
         {
             sr.sprite = tableDestruction[tableState];
         }
     }
-    UnityEvent OnTableDestroyed;
 }

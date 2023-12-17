@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(AnimationManager))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class HandMovement : MonoBehaviour
 {
     public Rigidbody2D rb;

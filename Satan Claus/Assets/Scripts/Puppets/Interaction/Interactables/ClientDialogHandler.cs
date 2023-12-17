@@ -1,14 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
+[RequireComponent(typeof(ClientBehaviour))]
 public class ClientDialogHandler : MonoBehaviour, IInteractable
 {
     [SerializeField] string[] dialogues;
     public Transform myTransform => transform;
     [SerializeField] CupInfo cupInfo;
     [SerializeField] int[] containerRequirements = new int[4];
+    Collider2D col;
+
+    private void Start() {
+        col = GetComponent<Collider2D>();
+
+        GameManager.GM.OnStateExit.AddListener(OnStateExit);
+        GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
+    }
+
+    private void OnStateExit(GameState state) 
+    {
+        if(state == GameState.Dialog)
+        {
+            print("Enabling collider");
+            col.enabled = true;
+        }
+    }
+
+   void OnStateEnter(GameState state)
+   {
+        if(state == GameState.Dialog)
+        {
+            print("Disabling collider");
+            col.enabled = false;
+        }
+   }
 
     public void Interact()
     {

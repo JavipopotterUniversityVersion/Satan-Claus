@@ -5,16 +5,16 @@ using UnityEngine;
 public class Cup : Container
 {
     [SerializeField] CupInfo cupInfo;
+
     private void Start() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
     }
 
-    void OnStateEnter(GameState state)
-    {
-        if (state == GameState.Cafe)
+    private void OnStateEnter(GameState state) {
+        if(state == GameState.Cooking)
         {
-            gameObject.SetActive(true);
+            ResetContainer();
         }
     }
 
@@ -22,7 +22,10 @@ public class Cup : Container
     {
         if (state == GameState.Cooking)
         {
-            cupInfo.numberOfDrops = numberOfDrops;
+            for(int i = 0; i < numberOfDrops.Length; i++)
+            {
+                cupInfo.numberOfDrops[i] = numberOfDrops[i];
+            }
         }
     }
 }

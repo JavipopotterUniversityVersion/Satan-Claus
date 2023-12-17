@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class RubbishScript : MonoBehaviour
 {
-    [SerializeField] int speed;
-    private Vector2 randomDirection = new Vector2(Random.value, Random.Range(0,35));
-
-    private Rigidbody rb;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
-        rb.velocity = randomDirection.normalized * speed;
+        float random = Random.Range(45f, 135f);
+        rb.velocity = new Vector2(Mathf.Cos(random), Mathf.Sin(random)) * Random.Range(25f, 40f);
     }
 }

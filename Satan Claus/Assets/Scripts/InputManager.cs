@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,19 +6,37 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private HandMovement leftHandMovement;
     [SerializeField] private RightHandMovement rightHandMovement;
-    PlayerInput playerInput;
     private InteractionHandler interactionHandler;
-    bool canMove = true;
+    Drageable drageable;
+    bool _canMove = true;
+    bool canMove
+    {
+        get { return _canMove; }
+        set
+        {
+            if(!value)
+            {
+                leftHandMovement.Move(0);
+                rightHandMovement.moving = false;
+            }
+            _canMove = value;
+        }
+    }
 
     private void Start() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
 
         interactionHandler = GetComponent<InteractionHandler>();
+        drageable = GetComponent<Drageable>();
 
-        playerInput = GetComponent<PlayerInput>();
+        drageable.OnDrag.AddListener(OnDrag);
     }
 
+    void OnDrag(bool value)
+    {
+        canMove = !value;
+    }
 
     void OnStateExit(GameState state)
     {
@@ -48,7 +67,7 @@ public class InputManager : MonoBehaviour
         {
             rightHandMovement.moving = true;
         }
-        else if(context.canceled || Drageable.drageable.m_TargetJoint != null)
+        else if(context.canceled)
         {
             rightHandMovement.moving = false;
         }

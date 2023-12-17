@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Drag a Rigidbody2D by selecting one of its colliders by pressing the mouse down.
@@ -21,23 +22,9 @@ public class Drageable : MonoBehaviour
 
 	public TargetJoint2D m_TargetJoint;
 
-	static private Drageable _thisDrageable;
-	static public Drageable drageable
-	{
-		get { return _thisDrageable; }
-	}
+	public UnityEvent<bool> OnDrag;
 
-    private void Awake()
-    {
-        if (_thisDrageable == null)
-		{
-			_thisDrageable = this;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-    }
+
     void Update ()
 	{
 		// Calculate the world position for the mouse.
@@ -57,6 +44,7 @@ public class Drageable : MonoBehaviour
 				return;
 
 			// Add a target joint to the Rigidbody2D GameObject.
+			OnDrag?.Invoke(true);
 			m_TargetJoint = body.gameObject.AddComponent<TargetJoint2D> ();
 			m_TargetJoint.dampingRatio = m_Damping;
 			m_TargetJoint.frequency = m_Frequency;
@@ -66,6 +54,11 @@ public class Drageable : MonoBehaviour
 		}
 		else if (Input.GetMouseButtonUp (0))
 		{
+			if(m_TargetJoint != null)
+			{
+				OnDrag?.Invoke(false);
+			}
+			
 			Destroy (m_TargetJoint);
 			m_TargetJoint = null;
 			return;

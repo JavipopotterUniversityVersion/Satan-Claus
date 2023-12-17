@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bat
+  - target
+  - table
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - UI
   - Filter
   - Puppet
-  - 
-  - 
+  - Rubbish
+  - ActionSection
   - 
   - 
   - 

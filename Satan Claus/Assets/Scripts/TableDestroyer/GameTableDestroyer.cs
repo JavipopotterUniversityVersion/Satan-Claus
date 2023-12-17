@@ -32,7 +32,7 @@ public class GameTableDestroyer : MonoBehaviour
     }
     public void DestroyTable()
     {
-        gameObject.SetActive(false);
         Instantiate(brokenTable, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

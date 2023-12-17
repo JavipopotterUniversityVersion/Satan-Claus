@@ -18,15 +18,19 @@ public class GameManager : MonoBehaviour
     public static GameManager GM;
     GameState stateHolder;
     GameState gameState;
+    public GameState newState;
     [HideInInspector] public UnityEvent<GameState> OnStateEnter;
     [HideInInspector] public UnityEvent<GameState> OnStateExit;
 
     private void Awake() {
         GM = this;
+        OnStateEnter = new UnityEvent<GameState>();
+        OnStateExit = new UnityEvent<GameState>();
     }
 
     public void ChangeStateOfGame(GameState newState)
     {
+        this.newState = newState;
         OnStateExit?.Invoke(gameState);
 
         switch(newState)

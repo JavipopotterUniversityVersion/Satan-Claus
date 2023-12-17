@@ -377,6 +377,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Puppets_13
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc9e9fee16a6e64d9e28cc3a151060b
+      internalID: 263220536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -393,6 +414,7 @@ TextureImporter:
       Puppets_10: 981173584
       Puppets_11: -766839256
       Puppets_12: -1941295318
+      Puppets_13: 263220536
       Puppets_2: -755794057
       Puppets_3: -877239005
       Puppets_4: 2122759185

@@ -13,6 +13,7 @@ public class Container : MonoBehaviour
 
     private void OnEnable() {
         transform.position = originalPosition;
+        ResetContainer();
     }
 
     public void ResetContainer()

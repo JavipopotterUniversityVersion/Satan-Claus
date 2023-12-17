@@ -29,6 +29,7 @@ public class DialoguesManager : MonoBehaviour
     private Coroutine executeDialogCoroutine;
     public InputActionReference pass;
     public UnityEvent<bool> OnDialogNotPerforming;
+    public UnityEvent servedEvent;
 
     private void Awake() {
         dialoguesManager = this;
@@ -77,14 +78,18 @@ public class DialoguesManager : MonoBehaviour
         GameManager.GM.ChangeStateOfGame(GameState.Dialog);
         OnDialogNotPerforming?.Invoke(false);
         text.text = "";
-        // InputManager.input.enabled =  false;
+
         pass.action.Enable();
+
         if(key == "")
         {
             GameManager.GM.ChangeStateOfGame(GameState.Cafe);
             yield break;
         }
-        foreach(string line in key.Split("*"))
+
+        string[] arguments = key.Split("*");
+
+        foreach(string line in arguments)
         {
             next = false;
             skipText = false;
@@ -125,6 +130,12 @@ public class DialoguesManager : MonoBehaviour
                 OnDialogNotPerforming?.Invoke(true);
                 GameManager.GM.ChangeStateOfGame(GameState.Cafe);
                 break;
+            }
+
+            if(line.Contains("[SERVED]"))
+            {
+                servedEvent?.Invoke();
+                continue;
             }
 
             if(line.Contains("[An]"))
@@ -216,7 +227,6 @@ public class DialoguesManager : MonoBehaviour
                 continue;
             }
 
-
             if(line.Contains("[Wait]"))
             {
                 if(!skipDialog)
@@ -235,24 +245,11 @@ public class DialoguesManager : MonoBehaviour
 
             text.text = "";
 
+            print(line);
+
             foreach(char character in line)
             {
-                if(character == "<"[0])
-                {
-                    next = true;
-                    if(line.Contains("<until>"))
-                    {
-                        while(!Input.GetButtonDown(line.Split("<until>")[1])) yield return null;
-                        break;
-                    }
-                    if(line.Contains("<wait>"))
-                    {
-                        yield return new WaitForSecondsRealtime(float.Parse(line.Split("<wait>")[1]));
-                        break;
-                    }
-                }
-
-                text.text = text.text + character;
+                text.text += character;
                 AudioManager.instance.PlayOneShot("text_beep");
 
                 if(!skipDialog)
@@ -263,6 +260,7 @@ public class DialoguesManager : MonoBehaviour
                     }
                 }
             }
+
             UIpointer.SetActive(true);
             next = false;
             skipText = false;

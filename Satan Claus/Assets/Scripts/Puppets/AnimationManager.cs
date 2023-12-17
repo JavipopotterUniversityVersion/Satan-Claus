@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class AnimationManager : MonoBehaviour
 {
-    string[] PARAMETERS_NAME = new string[2] { "moving", "opened" };
+    string[] PARAMETERS_NAME = new string[3] { "moving", "opened", "sit" };
 
     Animator an;
 
@@ -22,5 +22,10 @@ public class AnimationManager : MonoBehaviour
     public void OpenMouth(bool value)
     {
         an.SetBool(PARAMETERS_NAME[1], value);
+    }
+
+    public void Sit(bool value)
+    {
+        an.SetBool(PARAMETERS_NAME[2], value);
     }
 }

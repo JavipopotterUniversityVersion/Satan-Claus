@@ -37,6 +37,24 @@ public class Drop : MonoBehaviour
         }
     }
 
+    private void Start() {
+        GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
+        GameManager.GM.OnStateExit.AddListener(OnStateExit);
+    }
+
+    void OnStateEnter(GameState state)
+    {
+        
+    }
+
+    void OnStateExit(GameState state)
+    {
+        if(state == GameState.Cooking)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.TryGetComponent(out Container container))
         {
@@ -46,6 +64,8 @@ public class Drop : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
+        if(GameManager.GM.newState != GameState.Cooking) return;
+        
         if(container != null)
         {
             if(other.gameObject == container.gameObject)
@@ -55,7 +75,7 @@ public class Drop : MonoBehaviour
             }
         }
     }
-
+    
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.TryGetComponent(out Drop drop) && type == TypeOfDrop.lava)
         {

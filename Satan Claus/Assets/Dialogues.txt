@@ -1,28 +1,17 @@
 Belcebu//
-0)[Img]Player[Img]*
-1)[Img]Belcebu[Img]*
-[NAME]Player[NAME]*
-[An]talk1[An]*
-So, Belcebu, what can I get you today? Another round of your favorite drink?
+0)[Img]Belcebu[Img]*
+
 [NAME]Belcebu[NAME]*
-[An]talk2[An]*
-No, no, I don't want a drink today. I want something else.
-[NAME]Player[NAME]*
-[An]talk1[An]*
-Oh? What is it that you want then?
+Un cafe*
+porfa*
+
+[END]*
+
+___BelcebuServed//
+0)[Img]Belcebu[Img]*
+
 [NAME]Belcebu[NAME]*
-[An]talk2[An]*
-I want a cat. A black cat with piercing green eyes.
-[NAME]Player[NAME]*
-[An]talk1[An]*
-A cat? That's an interesting request. Any particular reason why you want a cat?
-[NAME]Belcebu[NAME]*
-[An]talk2[An]*
-I've always been fascinated by cats. Their independence, their mysterious nature. I want a companion like that.
-[NAME]Player[NAME]*
-[An]talk1[An]*
-I see. Well, I'll keep an eye out for a black cat with green eyes. If I come across one, I'll let you know.
-[NAME]Belcebu[NAME]*
-[An]talk2[An]*
-Thank you, Player. I appreciate it. Let me know as soon as you find one.
+Quiero un gato*
+
+[SERVED]*
 [END]

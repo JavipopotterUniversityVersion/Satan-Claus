@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7801768004395210167}
   m_Layer: 0
   m_Name: RubbishInteracter
-  m_TagString: Untagged
+  m_TagString: table
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.01625833, y: 0.21135831}
@@ -85,5 +85,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac2a3ea45f98444588de00f0922c439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubbish: {fileID: 0}
-  brokenTable: {fileID: 0}
+  rubbish: {fileID: 6796313248330243434, guid: 423ee16feb6bb6444aa0f214698f1ea1, type: 3}
+  brokenTable: {fileID: 6796313248330243434, guid: 423ee16feb6bb6444aa0f214698f1ea1, type: 3}

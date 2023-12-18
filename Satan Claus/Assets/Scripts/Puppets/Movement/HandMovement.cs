@@ -8,8 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class HandMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
-    AnimationManager an;
-    SpriteRenderer[] sr;
+    [SerializeField] AnimationManager an;
+    [SerializeField] SpriteRenderer[] sr;
     
     [SerializeField]
     private float speed = 10.0f;

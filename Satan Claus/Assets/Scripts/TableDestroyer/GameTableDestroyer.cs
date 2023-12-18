@@ -24,6 +24,7 @@ public class GameTableDestroyer : MonoBehaviour
     public void OnHitEnter()
     {
         hits++;
+        AudioManager.instance.Play("bat_hit");
         GenerateSomeRubbish();
         if (hits == 6)
         {

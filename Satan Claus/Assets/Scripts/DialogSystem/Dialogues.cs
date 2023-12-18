@@ -9,6 +9,8 @@ public  class Dialogues : MonoBehaviour
     public List<string> textKeys;
     public TextAsset file;
     string[] fileDivisons;
+    public TextAsset shortcutsFile;
+    public Dictionary<string, string> shortcuts = new Dictionary<string,string>();
 
     private void Awake() {
         dialogues = this;
@@ -25,6 +27,17 @@ public  class Dialogues : MonoBehaviour
         foreach(string a in texts.Keys)
         {
             textKeys.Add(a);
+        }
+
+        foreach(string line in shortcutsFile.text.Split("__"))
+        {
+            string[] a = line.Split("//");
+            shortcuts.Add(a[0].Replace("\n", ""), a[1].Replace("\n", ""));
+        }
+
+        foreach(string key in shortcuts.Keys)
+        {
+            print(key);
         }
     }
 }

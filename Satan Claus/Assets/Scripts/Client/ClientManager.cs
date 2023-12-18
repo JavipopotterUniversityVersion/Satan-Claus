@@ -10,6 +10,11 @@ public class ClientManager : MonoBehaviour
     private void Start() {
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
 
+        foreach(ClientBehaviour client in clients)
+        {
+            client.transform.position = transform.position;
+        }
+
         StartCoroutine(SetNewClient());
     }
 
@@ -32,8 +37,12 @@ public class ClientManager : MonoBehaviour
 
     IEnumerator SetNewClient()
     {
+        if(currentClient == clients.Length)
+        {
+            GameManager.GM.ChangeStateOfGame(GameState.End);
+            yield break;
+        }
         yield return new WaitForSecondsRealtime(5);
         clients[currentClient].gameObject.SetActive(true);
-        clients[currentClient].transform.position = transform.position;
     }
 }

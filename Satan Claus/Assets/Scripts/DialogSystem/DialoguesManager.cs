@@ -30,9 +30,30 @@ public class DialoguesManager : MonoBehaviour
     public InputActionReference pass;
     public UnityEvent<bool> OnDialogNotPerforming;
     public UnityEvent servedEvent;
+    string beep = "mic_beep";
+    bool isPerforming = false;
+    Animator _talkingCharacter;
+    Animator talkingCharacter
+    {
+        get
+        {
+            return _talkingCharacter;
+        }
+        set
+        {
+            if(_talkingCharacter != null)
+            {
+                _talkingCharacter.SetBool("turn", false);
+            }
+            value?.SetBool("turn", true);
+
+            _talkingCharacter = value;
+        }
+    }
 
     private void Awake() {
         dialoguesManager = this;
+        servedEvent = new UnityEvent();
         pass.action.performed += OnPassActionPerformed;
         for(int i = 0; i < img_sources_keys.Length; i++)
         {
@@ -63,7 +84,6 @@ public class DialoguesManager : MonoBehaviour
 
     public void ExecuteDialog(string dialog)
     {
-        if(executeDialogCoroutine != null) StopCoroutine(executeDialogCoroutine);
         executeDialogCoroutine = StartCoroutine(_ExecuteDialog(dialog));
     }
 
@@ -75,6 +95,8 @@ public class DialoguesManager : MonoBehaviour
 
     IEnumerator _ExecuteDialog(string key)
     {
+        isPerforming = true;
+
         GameManager.GM.ChangeStateOfGame(GameState.Dialog);
         OnDialogNotPerforming?.Invoke(false);
         text.text = "";
@@ -95,6 +117,13 @@ public class DialoguesManager : MonoBehaviour
             skipText = false;
             UIpointer.SetActive(false);
 
+            if(line.Contains("[SC]"))
+            {
+                ExecuteDialog(Dialogues.dialogues.shortcuts[line.Split("[SC]")[1]]);
+                while (isPerforming) yield return null;
+                continue;
+            }
+
             if(line.Contains("-choice-"))
             {
                 GameObject firstChoice = choice1.transform.parent.gameObject;
@@ -105,6 +134,12 @@ public class DialoguesManager : MonoBehaviour
                 choice1.text = choices[1].Split(">>")[0];
                 choice2.text = choices[2].Split(">>")[0];
                 break;
+            }
+
+            if(line.Contains("[VOICE]"))
+            {
+                beep = line.Split("[VOICE]")[1];
+                continue;
             }
 
             if(line.Contains("[TXT]"))
@@ -132,27 +167,14 @@ public class DialoguesManager : MonoBehaviour
                 break;
             }
 
+            if(line.Contains("[BREAK]"))
+            {
+                break;
+            }
+
             if(line.Contains("[SERVED]"))
             {
                 servedEvent?.Invoke();
-                continue;
-            }
-
-            if(line.Contains("[An]"))
-            {
-                dialogueUiAn.Play(line.Split("[An]")[1]);
-                continue;
-            }
-
-            if(line.Contains("[trAn]"))
-            {
-                dialogueUiAn.SetTrigger(line.Split("[trAn]")[1]);
-                continue;
-            }
-
-            if(line.Contains("[AN]"))
-            {
-                GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).GetComponent<Animator>().SetTrigger(line.Split("[AN]")[1].Split(",")[1]);
                 continue;
             }
 
@@ -169,12 +191,6 @@ public class DialoguesManager : MonoBehaviour
             if(line.Contains("[GM]"))
             {
                 GameManager.GM.Invoke(line.Split("[GM]")[1], 0);
-                continue;
-            }
-
-            if(line.Contains("[UIAn]"))
-            {
-                dialogueUiAn.Play(line.Split("[UIAn]")[1]);
                 continue;
             }
 
@@ -206,6 +222,24 @@ public class DialoguesManager : MonoBehaviour
                 {
                     img_transform.gameObject.SetActive(false);
                 }
+                continue;
+            }
+
+            if(line.Contains("[AnTr]"))
+            {
+                Transform img_transform = img[int.Parse(line.Split(")")[0])].transform;
+                img_transform.GetComponentInChildren<Animator>().SetTrigger(line.Split("[An]")[1]);
+            }
+
+            if(line.Contains("[AnBool]"))
+            {
+                Transform img_transform = img[int.Parse(line.Split(")")[0])].transform;
+                img_transform.GetComponentInChildren<Animator>().SetBool(line.Split("[An]")[1], bool.Parse(line.Split("[An]")[2]));
+            }
+
+            if(line.Contains("[TALKING]"))
+            {
+                talkingCharacter = img[int.Parse(line.Split(")")[0])].transform.GetComponentInParent<Animator>();
                 continue;
             }
 
@@ -245,12 +279,15 @@ public class DialoguesManager : MonoBehaviour
 
             text.text = "";
 
-            print(line);
+            if(talkingCharacter != null)
+            {
+                talkingCharacter.SetBool("talking", true);
+            }
 
             foreach(char character in line)
             {
                 text.text += character;
-                AudioManager.instance.PlayOneShot("text_beep");
+                AudioManager.instance.PlayOneShot(beep);
 
                 if(!skipDialog)
                 {
@@ -261,12 +298,19 @@ public class DialoguesManager : MonoBehaviour
                 }
             }
 
+            if(talkingCharacter != null)
+            {
+                talkingCharacter.SetBool("talking", false);
+            }
+
             UIpointer.SetActive(true);
             next = false;
             skipText = false;
             while(!(skipDialog || next)) {yield return null;}
         }
         skipDialog = false;
+
+        isPerforming = false;
     }
 
     public void ExecuteChoice(int num)

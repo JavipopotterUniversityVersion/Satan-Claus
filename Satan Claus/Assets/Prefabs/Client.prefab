@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7055862770623009158}
   - component: {fileID: 1934177595734655247}
   - component: {fileID: 3798733566115371132}
+  - component: {fileID: 3949218828536601480}
   m_Layer: 0
   m_Name: Client
   m_TagString: Untagged
@@ -72,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40b2e8f324910b498eabfc35ebf225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  an: {fileID: 1232575410694227295}
 --- !u!50 &2377293618707549134
 Rigidbody2D:
   serializedVersion: 4
@@ -105,7 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c30271ecdcd2164ba89fe5b03431bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 2377293618707549134}
+  an: {fileID: 2618481731330095977}
+  sr:
+  - {fileID: 1940162221164049433}
   speed: 5
 --- !u!114 &7055862770623009158
 MonoBehaviour:
@@ -119,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49315fef6aa175c40a73ec083e188c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubbish: {fileID: 0}
+  rubbish: {fileID: 168771260258625572, guid: e0f579db9cb3cde4ba9177f7a17a2516, type: 3}
 --- !u!114 &1934177595734655247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +168,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4.54241}
   m_EdgeRadius: 0
+--- !u!114 &3949218828536601480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637379881545219780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9c8a6710ba6e24db3d89351302f41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7132295584453604514
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +252,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7482667652216324306, guid: d728b7b4b56f4ec49bc59d27bbb1e2e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

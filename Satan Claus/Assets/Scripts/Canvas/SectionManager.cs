@@ -22,7 +22,6 @@ public class SectionManager : MonoBehaviour
 
         canvas = this;
 
-        SectionControllerList = GetComponentsInChildren<SectionController>().ToList();
         DeactivateAllCanvases();
     }
 

@@ -20,7 +20,6 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
     {
         if(state == GameState.Dialog)
         {
-            print("Enabling collider");
             col.enabled = true;
         }
     }
@@ -29,7 +28,6 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
    {
         if(state == GameState.Dialog)
         {
-            print("Disabling collider");
             col.enabled = false;
         }
    }

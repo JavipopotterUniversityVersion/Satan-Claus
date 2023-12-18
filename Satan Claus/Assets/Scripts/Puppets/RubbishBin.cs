@@ -30,15 +30,15 @@ public class RubbishBin : MonoBehaviour
     }
 
     private void Update() {
-        isMouthOpen = Physics2D.Raycast(transform.position + Vector3.up * 2f, Vector2.up, 100, LayerMask.GetMask("Rubbish"));
+        isMouthOpen = Physics2D.Raycast(transform.position, Vector2.up * 0.5f, 100, LayerMask.GetMask("Rubbish"));
 
         animationManager.OpenMouth(isMouthOpen);
 
-        Collider2D other = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("Rubbish"));
+        Collider2D other = Physics2D.OverlapCircle(transform.position, 0.3f, LayerMask.GetMask("Rubbish"));
 
         if(other && isMouthOpen)
         {
-            AudioManager.instance.Play("rubbish_in_bin");
+            AudioManager.instance.Play("eat");
 
             Destroy(other.gameObject);
             RubbishCount++;
@@ -51,5 +51,10 @@ public class RubbishBin : MonoBehaviour
                 OnRubbishCleaned?.Invoke();
             }
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, 0.3f);
+        Gizmos.DrawRay(transform.position, Vector2.up * 100);
     }
 }

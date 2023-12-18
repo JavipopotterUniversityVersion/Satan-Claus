@@ -13,9 +13,9 @@ public abstract class InteractionManager : MonoBehaviour
         CanInteract?.Invoke(interactable);
     }
 
-    public void StopDetectingInteractable(IInteractable interactable)
+    public void StopDetectingInteractable()
     {
-        CantInteract?.Invoke(interactable);
+        CantInteract?.Invoke(null);
     }
 }
 

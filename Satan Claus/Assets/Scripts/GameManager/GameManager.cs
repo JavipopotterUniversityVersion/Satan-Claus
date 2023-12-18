@@ -10,7 +10,8 @@ public enum GameState
     Dialog,
     Cooking,
     Cleaning,
-    stateHolder
+    stateHolder,
+    End
 }
 
 public class GameManager : MonoBehaviour
@@ -26,6 +27,10 @@ public class GameManager : MonoBehaviour
         GM = this;
         OnStateEnter = new UnityEvent<GameState>();
         OnStateExit = new UnityEvent<GameState>();
+    }
+
+    private void Start() {
+        AudioManager.instance.Play("InGame");
     }
 
     public void ChangeStateOfGame(GameState newState)

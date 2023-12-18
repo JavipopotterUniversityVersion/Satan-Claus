@@ -7,7 +7,7 @@ public class AnimationManager : MonoBehaviour
 {
     string[] PARAMETERS_NAME = new string[3] { "moving", "opened", "sit" };
 
-    Animator an;
+    [SerializeField] Animator an;
 
     void Awake()
     {

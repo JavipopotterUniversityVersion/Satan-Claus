@@ -5,11 +5,12 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    [HideInInspector] public Sound[] sounds;
     public static AudioManager instance;
 
     private void Awake() {
         instance = this;
+        sounds = GetComponentsInChildren<Sound>();
         foreach(Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;

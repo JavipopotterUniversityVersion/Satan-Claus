@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4353443531687334346}
   - component: {fileID: -7884332015763651774}
   - component: {fileID: 645427918}
+  - component: {fileID: 5842267225925748053}
   m_Layer: 8
   m_Name: rubbish
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7482667652216324306, guid: d728b7b4b56f4ec49bc59d27bbb1e2e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,3 +137,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5842267225925748053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796313248330243434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6c5c49bdd167e408439b3c43723420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleSprites:
+  - {fileID: 1564292814, guid: aca67ea54764917419a063a274ffd6ee, type: 3}
+  - {fileID: 943136106, guid: aca67ea54764917419a063a274ffd6ee, type: 3}
+  - {fileID: 1059694748, guid: aca67ea54764917419a063a274ffd6ee, type: 3}
+  - {fileID: 1790579813, guid: aca67ea54764917419a063a274ffd6ee, type: 3}
+  - {fileID: -8425428, guid: aca67ea54764917419a063a274ffd6ee, type: 3}

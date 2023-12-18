@@ -1,17 +1,335 @@
 Belcebu//
-0)[Img]Belcebu[Img]*
+[SC]Belcebu[SC]*
+Ufff, pon me algo por favor.*
 
-[NAME]Belcebu[NAME]*
-Un cafe*
-porfa*
+[SC]LeftHand[SC]*
+¿Lo de siempre, verdad? *
+
+[SC]RightHand[SC]*
+¿Todo bien?*
+
+[SC]Belcebu[SC]*
+No, hoy quiero algo distinto, quizá...*
+Hoy sangre de embarazada.*
+Estoy cansado de las almas, siempre lo mismo.*
+
+[SC]LeftHand[SC]*
+Derecha, eso es cosa tuya.*
+Ya sabes que a mí los bebés me dan cosa.*
+
+[SC]RightHand[SC]*
+Pero si no están vivos.*
+¿Por qué te dan cosa?*
+
+[SC]LeftHand[SC]*
+Porque sus almas son pequeñas.*
+Además, se retuercen y hacen cosas raras.*
+
+[SC]RightHand[SC]*
+...*
 
 [END]*
 
 ___BelcebuServed//
-0)[Img]Belcebu[Img]*
+[SC]Belcebu[SC]*
+Ja ja ja, tiene que ser agradable.*
+
+[SC]RightHand[SC]*
+¿Los bebés? *
+No son así como muy pequeños y raros.*
+
+[SC]Belcebu[SC]*
+No, no es eso, solo es que... *
+Bueno, últimamente las almas*
+Tienen menos conversación que antes.*
+
+[SC]RightHand[SC]*
+¿Ya no te cuentan cosas interesantes?*
+Todavía me acuerdo de aquella historia.*
+La de la mujer que se regaló con un algo en la playa.*
+La que cayó encima de una medusa.*
+
+[SC]Belcebu[SC]*
+Sí, eso fue bueno, pero no es la mejor.*
+Pero ahora, yo no soy interesante.*
+Bajan sin haber hecho nada, solo "buno", "bien", "nose"*
+y no hay historias interesantes.*
+
+[SC]LeftHand[SC]*
+TomaBelcebú, si te sirve de consuelo*
+Las almas en pena, cada vez son más numerosas.*
+
+[SC]Belcebu[SC]*
+Sí, pero también más aburridas.*
+Necesito algo que me amenice los días.*
+
+[SC]RightHand[SC]*
+¿Quieres un amigo? *
+Raro sería en nuestro viejoBelcebú.*
+
+[SC]LeftHand[SC]*
+Supongo que todos merecemos eso.*
+Alguien con quien discutir.*
+Que nos haga la vida imposible.*
+
+[SC]RightHand[SC]*
+Eso duele, creo que soy algo más que una molestia.*
+
+[SC]Belcebu[SC]*
+Ejem ejem.*
+No, un amigo normal no.*
+Desde hace tiempo quiero.*
+Una de las pocas cosas que no están en el infierno.*
+
+[SC]RightHand[SC]*
+¿Un dinosaurio?*
+
+[SC]LeftHand[SC]*
+Un unicornio.*
+
+[SC]RightHand[SC]*
+Un dragón.*
+
+[SC]LeftHand[SC]*
+Alguien que te dé un abrazo sincero.*
+
+[SC]RightHand[SC]*
+Una motocicleta con motosierras.*
+Como esa película tan chula.*
+
+[SC]LeftHand[SC]*
+¿Gandí? *
+
+[SC]Belcebu[SC]*
+No, ni os habéis acercado.*
+Solo quiero un gatito, algo pequeño, adorable y fiero.*
+
+[SC]RightHand[SC]*
+¿Pero los gatos no están ya en el infierno? *
+
+[SC]LeftHand[SC]*
+No, los desterramos.*
+Demasiado malvados para estar aquí.*
+
+[SC]RightHand[SC]*
+Ah claro, les dimos más vidas para que no bajaran.*
+
+[SC]Belcebu[SC]*
+A mí me gustaban, aunque hace tiempo de eso ya.*
+
+[SC]RightHand[SC]*
+No sé, fueron desterrados, aunque quizá...*
 
 [NAME]Belcebu[NAME]*
-Quiero un gato*
+¿Quizá que? *
+
+[SC]LeftHand[SC]*
+Nada, a veces se encierra y sus pensamientos *
+
+[NAME]Belcebu[NAME]*
+A veces sois un poco raros, pero tenéis el mejor café del mundo*
+
+[SC]RightHand[SC]*
+Gracias, siempre se agradecen los alagos*
 
 [SERVED]*
-[END]
+[END]*
+
+___Nyarlatotep//
+[SC]Nyarlatotep[SC]*
+Estos mortales cada día son más tontos.*
+
+[SC]RightHand[SC]*
+No me digas más, lava de almas.*
+
+[SC]Nyarlatotep[SC]*
+Con un extra de almas, por favor.*
+Hoy ha sido un día agotador.*
+
+___NyarlatotepServed//
+
+[SC]LeftHand[SC]*
+No te estreses amigo, tantos años buscando el caos y la destrucción.*
+Cansarian a cualquiera.*
+
+1)[Img]Nyarlatotep[Img]*
+[NAME][SC]Nyarlatotep[SC]*
+No sabes cuánta razón tienes.*
+Os envidio mucho a veces.*
+Servir cafés, nada de destrucción ni de caos.*
+
+[SC]LeftHand[SC]*
+...*
+
+[SC]RightHand[SC]*
+...*
+
+[SC]Nyarlatotep[SC]*
+¿He dicho algo malo? *
+Lo siento, no quería molestaros.*
+
+[SC]LeftHand[SC]*
+No te preocupes, no es nada.*
+Sí que es cierto que está bien.*
+
+[SC]RightHand[SC]*
+Después de un tiempo todo cansa.*
+Pero sí que es cierto que un buen café anima a cualquiera.*
+
+[SC]Nyarlatotep[SC]*
+Sí que es cierto...*
+El café...*
+Relaja, tranquiliza, puede hacerte olvidar tus problemas.*
+
+[SC]RightHand[SC]*
+No es para tanto, está bien.*
+Pero hay mejores soluciones.*
+
+[SC]Nyarlatotep[SC]*
+Sí, pero esas soluciones no están al alcance de una deidad del caos.*
+Yo solo doy caos, no paz.*
+
+[SC]LeftHand[SC]*
+Bueno, todo es intentarlo.*
+Quién sabe, quizá después de conocer tan bien el caos.*
+Sepas poner orden.*
+
+[SC]RightHand[SC]*
+O no, algunos son lo que fueron y serán siempre.*
+Pero no lo sabrás si no lo intentas.*
+
+[SC]Nyarlatotep[SC]*
+Tenéis razón, voy a salir de aquí.*
+Y voy a comerme el mundo.*
+Pero no como siempre, sino...*
+Bueno, ya me entendéis.*
+
+[SC]RightHand[SC]*
+Es hora de hacer lo que quieres hacer*
+aunque siempre viene bien un poco de ayuda.*
+
+[SC]Nyarlatotep[SC]*
+¿Como que ayuda?*
+
+[SC]LeftHand[SC]*
+Nada, nada, nada.*
+Deberías dejar de decir tonterías.*
+Vas a confundir a la gente.*
+
+[SC]RightHand[SC]*
+No sé de qué me hablas.*
+
+[SC]Nyarlatotep[SC]*
+Gracias por el café, me voy a poner en marcha.*
+
+[SERVED]*
+[END]*
+
+___GameDeveloper//
+[SC]GameDeveloper[SC]
+Buenas tardes, vamos al grano.*
+
+[SC]RightHand[SC]*
+Esto es una cafetería, no hay granos.*
+Solo almas y sangre.*
+
+[SC]GameDeveloper[SC]
+Sírveme las almas.*
+Es lo que voy a comer si no acabo esto pronto.*
+
+___GameDeveloperServed//
+
+[SC]RightHand[SC]*
+¿Acabar con qué exactamente?*
+
+[SC]LeftHand[SC]*
+Eh, eres nuevo aquí.*
+¿Quién eres?*
+
+[SC]GameDeveloper[SC]
+Bueno, acabar con esto, todo esto.*
+Si soy un nuevo alma en pena, podría decirse así.*
+
+[SC]RightHand[SC]*
+¿Quieres acabar con el infierno?*
+No es tarea fácil, si es tu intención.*
+
+[SC]LeftHand[SC]*
+No espera, nosotros formamos parte de eso.*
+
+[SC]GameDeveloper[SC]
+Me refiero no a acabar con ello.*
+Sino a acabar de hacerlo.*
+
+[SC]RightHand[SC]*
+Ah, ¿espera q...*
+
+[SC]LeftHand[SC]*
+No le en...*
+
+[SC]RightHand[SC]*
+...*
+
+[SC]LeftHand[SC]*
+...*
+
+[NAME][SC]GameDeveloper[SC]
+Maldita guionista, siempre dejando cosas a medias.*
+Dadme un minuto chicos.*
+Click click click click click.*
+Creo que debería funcionar.*
+
+[SC]RightHand[SC]*
+Así que lo que quieres es terminar tu proyecto.*
+Tómate un descanso con la lava de almas.*
+Descansar siempre es sano.*
+
+[SC]LeftHand[SC]*
+Descansar está bien, pero no te olvides del objetivo.*
+No puedes simplemente descansar y ya.*
+
+[SC]GameDeveloper[SC]
+No me gusta.*
+Dadme un segundo.*
+Click click click click click.*
+Ahora debería estar mejor.*
+
+[SC]RightHand[SC]*
+¿Cómo? ¿Qué somos qué?*
+
+[SC]LeftHand[SC]*
+¿Estás insinuando que tienes nuestro creador?*
+La verdad es que suena gracioso.*
+
+[SC]RightHand[SC]*
+Sí, sobre todo viniendo de un alma perdida.*
+Debe estar cansado...*
+
+[SC]GameDeveloper[SC]
+A ver, no exactamente, sois más bien un concepto.*
+Algo que ya existe, pero yo.*
+Os he dado forma aquí.*
+
+[SC]RightHand[SC]*
+JA JA JA UN SIMPLE ALMA BLASFEMANDO.*
+
+[SC]LeftHand[SC]*
+Cálmate, solo está perdido y cansado.*
+
+[SC]GameDeveloper[SC]
+Vale, vale, a ver qué tal así?*
+Simplemente quiero terminar mi juego.*
+Espero que este café me calme.*
+
+[SC]RightHand[SC]*
+Así que solo es eso, quizá...*
+
+[SC]LeftHand[SC]*
+No lo digas, deja que se tome el café.*
+No hace falta nada más.*
+
+[SC]GameDeveloper[SC]
+Gracias, sois muy de ayuda, glup.*
+
+[SERVED]*
+[END]*

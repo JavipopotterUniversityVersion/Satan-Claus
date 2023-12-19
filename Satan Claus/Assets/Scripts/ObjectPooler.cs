@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum entity
 {
-    lava, salt, virginBlood
+    lava, salt, virginBlood, souls
 }
 
 public class ObjectPooler : MonoBehaviour

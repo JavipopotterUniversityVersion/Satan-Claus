@@ -14,7 +14,7 @@ public class RightHandInteracter : InteractionManager
     private void OnTriggerExit2D(Collider2D other) {
         if (other.TryGetComponent(out StateChangerInteractable clientDialog))
         {
-            StopDetectingInteractable();
+            StopDetectingInteractable(clientDialog);
         }
     }
 }

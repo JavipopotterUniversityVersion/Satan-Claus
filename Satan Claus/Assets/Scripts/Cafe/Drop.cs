@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public enum TypeOfDrop
 {lava, souls, salt,  virginBlood}
 
 public class Drop : MonoBehaviour
 {
+    Light2D dropLight;
     [SerializeField] TypeOfDrop _type;
     float timer = 3;
     Container container;
@@ -20,6 +22,17 @@ public class Drop : MonoBehaviour
                 container.numberOfDrops[(int) _type]--;
                 container.numberOfDrops[(int) value]++;
             }
+
+            switch(value)
+            {
+                case TypeOfDrop.lava:
+                    dropLight.color = new Color(1f, 0.36f, 0f);
+                    break;
+                case TypeOfDrop.souls:
+                    dropLight.color = Color.green;
+                    break;
+            }
+
             _type = value;
         }
     }
@@ -40,6 +53,7 @@ public class Drop : MonoBehaviour
     private void Start() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
+        dropLight = GetComponentInChildren<Light2D>();
     }
 
     void OnStateEnter(GameState state)

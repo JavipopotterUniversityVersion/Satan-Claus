@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractionHandler : MonoBehaviour
 {
-    public IInteractable interactable;
-    IInteractable lastInteractable;
+    public List<IInteractable> interactables = new List<IInteractable>();
+    bool canInteract = true;
 
     private void Start() {
         foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
         {
             interaction.CanInteract.AddListener(GetInteractable);
-            interaction.CantInteract.AddListener(GetInteractable);
+            interaction.CantInteract.AddListener(RemoveInteractable);
         }
-
+        
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
     }
@@ -22,7 +23,7 @@ public class InteractionHandler : MonoBehaviour
         foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
         {
             interaction.CanInteract.RemoveListener(GetInteractable);
-            interaction.CantInteract.RemoveListener(GetInteractable);
+            interaction.CantInteract.RemoveListener(RemoveInteractable);
         }
 
         GameManager.GM.OnStateEnter.RemoveListener(OnStateEnter);
@@ -34,12 +35,10 @@ public class InteractionHandler : MonoBehaviour
         switch(state)
         {
             case GameState.Dialog:
-                lastInteractable = interactable;
-                interactable = null;
+                canInteract = false;
                 break;
             case GameState.Cooking:
-                lastInteractable = interactable;
-                interactable = null;
+                canInteract = false;
                 break;
         }
     }
@@ -49,24 +48,29 @@ public class InteractionHandler : MonoBehaviour
         switch(state)
         {
             case GameState.Dialog:
-                interactable = lastInteractable;
+                canInteract = true;
                 break;
             case GameState.Cooking:
-                interactable = lastInteractable;
+                canInteract = true;
                 break;
         }
     }
 
     public void Interact()
     {
-        if (interactable != null) 
+        if (canInteract && interactables.Count > 0)
         {
-            interactable.Interact();
+            interactables[^1].Interact();
         }
     }
 
     void GetInteractable(IInteractable interactable)
     {
-        this.interactable = interactable;
+        interactables.Add(interactable);
+    }
+
+    void RemoveInteractable(IInteractable interactable)
+    {
+        interactables.Remove(interactable);
     }
 }

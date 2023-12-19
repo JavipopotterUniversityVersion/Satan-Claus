@@ -120,13 +120,13 @@ A mí me gustaban, aunque hace tiempo de eso ya.*
 [SC]RightHand[SC]*
 No sé, fueron desterrados, aunque quizá...*
 
-[NAME]Belcebu[NAME]*
+[SC]Belcebu[SC]*
 ¿Quizá que? *
 
 [SC]LeftHand[SC]*
 Nada, a veces se encierra y sus pensamientos *
 
-[NAME]Belcebu[NAME]*
+[SC]Belcebu[SC]*
 A veces sois un poco raros, pero tenéis el mejor café del mundo*
 
 [SC]RightHand[SC]*
@@ -148,12 +148,12 @@ Hoy ha sido un día agotador.*
 
 ___NyarlatotepServed//
 
+
 [SC]LeftHand[SC]*
 No te estreses amigo, tantos años buscando el caos y la destrucción.*
 Cansarian a cualquiera.*
 
-1)[Img]Nyarlatotep[Img]*
-[NAME][SC]Nyarlatotep[SC]*
+[SC]Nyarlatotep[SC]*
 No sabes cuánta razón tienes.*
 Os envidio mucho a veces.*
 Servir cafés, nada de destrucción ni de caos.*

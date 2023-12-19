@@ -46,7 +46,7 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
             }
             else
             {
-                DialoguesManager.dialoguesManager.ExecuteDialogViaKey(dialogues[2]);
+                // DialoguesManager.dialoguesManager.ExecuteDialogViaKey(dialogues[2]);
             }
         }
     }

@@ -24,12 +24,26 @@ public class RubbishBin : MonoBehaviour
         }
     }
     AnimationManager animationManager;
+    bool CleanedTrigger = false;
 
     private void Awake() {
         animationManager = GetComponent<AnimationManager>();
     }
 
+    private void Start() {
+        GameManager.GM.OnStateExit.AddListener(OnStateExit);
+    }
+
+    void OnStateExit(GameState state)
+    {
+        if(state == GameState.Cleaning)
+        {
+            CleanedTrigger = true;
+        }
+    }
+
     private void Update() {
+
         isMouthOpen = Physics2D.Raycast(transform.position, Vector2.up * 0.5f, 100, LayerMask.GetMask("Rubbish"));
 
         animationManager.OpenMouth(isMouthOpen);
@@ -43,8 +57,9 @@ public class RubbishBin : MonoBehaviour
             Destroy(other.gameObject);
             RubbishCount++;
 
-            if(rubbishInfo.rubbishCount == RubbishCount)
+            if(RubbishCount >= rubbishInfo.rubbishCount && CleanedTrigger)
             {
+                CleanedTrigger = false;
                 RubbishCount = 0;
                 rubbishInfo.rubbishCount = 0;
 

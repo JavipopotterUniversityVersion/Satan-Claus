@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: dialogues.Array.data[1]
       value: NyarlatotepServed
       objectReference: {fileID: 0}
+    - target: {fileID: 1934177595734655247, guid: 39007f28489c75a4983f65366a86fcdc, type: 3}
+      propertyPath: containerRequirements.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1940162221164049433, guid: 39007f28489c75a4983f65366a86fcdc, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -30,6 +34,10 @@ PrefabInstance:
     - target: {fileID: 2507429777995299076, guid: 39007f28489c75a4983f65366a86fcdc, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507429777995299076, guid: 39007f28489c75a4983f65366a86fcdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140399133415514047, guid: 39007f28489c75a4983f65366a86fcdc, type: 3}
       propertyPath: m_RootOrder

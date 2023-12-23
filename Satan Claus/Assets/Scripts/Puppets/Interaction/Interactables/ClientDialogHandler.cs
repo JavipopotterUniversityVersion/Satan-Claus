@@ -1,6 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(ClientBehaviour))]
 public class ClientDialogHandler : MonoBehaviour, IInteractable
 {
     [SerializeField] string[] dialogues;
@@ -60,6 +60,7 @@ public class ClientDialogHandler : MonoBehaviour, IInteractable
                 return false;
             }
         }
+        cupInfo.Restart();
         return true;
     }
 

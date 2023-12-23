@@ -24,7 +24,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputs"",
     ""maps"": [
         {
-            ""name"": ""LeftHand"",
+            ""name"": ""Playing"",
             ""id"": ""af2cbf55-412a-4123-b5de-3fa27f3f48d9"",
             ""actions"": [
                 {
@@ -52,6 +52,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""17a86223-43c5-4dd7-8d39-3b60fca2087c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -110,17 +119,60 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""RightHandMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b520acd2-203c-401e-a509-a85c5c3465c8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Paused"",
+            ""id"": ""1c49296b-6cfe-46a7-9361-5beb930031ef"",
+            ""actions"": [
+                {
+                    ""name"": ""pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""54b20b5c-80d8-4f1c-9787-5dfcdabcae6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f69f6e27-b544-4a04-a998-d5de5595ee59"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // LeftHand
-        m_LeftHand = asset.FindActionMap("LeftHand", throwIfNotFound: true);
-        m_LeftHand_LeftHandMove = m_LeftHand.FindAction("LeftHandMove", throwIfNotFound: true);
-        m_LeftHand_Interact = m_LeftHand.FindAction("Interact", throwIfNotFound: true);
-        m_LeftHand_RightHandMove = m_LeftHand.FindAction("RightHandMove", throwIfNotFound: true);
+        // Playing
+        m_Playing = asset.FindActionMap("Playing", throwIfNotFound: true);
+        m_Playing_LeftHandMove = m_Playing.FindAction("LeftHandMove", throwIfNotFound: true);
+        m_Playing_Interact = m_Playing.FindAction("Interact", throwIfNotFound: true);
+        m_Playing_RightHandMove = m_Playing.FindAction("RightHandMove", throwIfNotFound: true);
+        m_Playing_Pause = m_Playing.FindAction("Pause", throwIfNotFound: true);
+        // Paused
+        m_Paused = asset.FindActionMap("Paused", throwIfNotFound: true);
+        m_Paused_pause = m_Paused.FindAction("pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -179,28 +231,30 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // LeftHand
-    private readonly InputActionMap m_LeftHand;
-    private List<ILeftHandActions> m_LeftHandActionsCallbackInterfaces = new List<ILeftHandActions>();
-    private readonly InputAction m_LeftHand_LeftHandMove;
-    private readonly InputAction m_LeftHand_Interact;
-    private readonly InputAction m_LeftHand_RightHandMove;
-    public struct LeftHandActions
+    // Playing
+    private readonly InputActionMap m_Playing;
+    private List<IPlayingActions> m_PlayingActionsCallbackInterfaces = new List<IPlayingActions>();
+    private readonly InputAction m_Playing_LeftHandMove;
+    private readonly InputAction m_Playing_Interact;
+    private readonly InputAction m_Playing_RightHandMove;
+    private readonly InputAction m_Playing_Pause;
+    public struct PlayingActions
     {
         private @PlayerInputs m_Wrapper;
-        public LeftHandActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftHandMove => m_Wrapper.m_LeftHand_LeftHandMove;
-        public InputAction @Interact => m_Wrapper.m_LeftHand_Interact;
-        public InputAction @RightHandMove => m_Wrapper.m_LeftHand_RightHandMove;
-        public InputActionMap Get() { return m_Wrapper.m_LeftHand; }
+        public PlayingActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftHandMove => m_Wrapper.m_Playing_LeftHandMove;
+        public InputAction @Interact => m_Wrapper.m_Playing_Interact;
+        public InputAction @RightHandMove => m_Wrapper.m_Playing_RightHandMove;
+        public InputAction @Pause => m_Wrapper.m_Playing_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Playing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LeftHandActions set) { return set.Get(); }
-        public void AddCallbacks(ILeftHandActions instance)
+        public static implicit operator InputActionMap(PlayingActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayingActions instance)
         {
-            if (instance == null || m_Wrapper.m_LeftHandActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_LeftHandActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayingActionsCallbackInterfaces.Add(instance);
             @LeftHandMove.started += instance.OnLeftHandMove;
             @LeftHandMove.performed += instance.OnLeftHandMove;
             @LeftHandMove.canceled += instance.OnLeftHandMove;
@@ -210,9 +264,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @RightHandMove.started += instance.OnRightHandMove;
             @RightHandMove.performed += instance.OnRightHandMove;
             @RightHandMove.canceled += instance.OnRightHandMove;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(ILeftHandActions instance)
+        private void UnregisterCallbacks(IPlayingActions instance)
         {
             @LeftHandMove.started -= instance.OnLeftHandMove;
             @LeftHandMove.performed -= instance.OnLeftHandMove;
@@ -223,27 +280,81 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @RightHandMove.started -= instance.OnRightHandMove;
             @RightHandMove.performed -= instance.OnRightHandMove;
             @RightHandMove.canceled -= instance.OnRightHandMove;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(ILeftHandActions instance)
+        public void RemoveCallbacks(IPlayingActions instance)
         {
-            if (m_Wrapper.m_LeftHandActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayingActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ILeftHandActions instance)
+        public void SetCallbacks(IPlayingActions instance)
         {
-            foreach (var item in m_Wrapper.m_LeftHandActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayingActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_LeftHandActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayingActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public LeftHandActions @LeftHand => new LeftHandActions(this);
-    public interface ILeftHandActions
+    public PlayingActions @Playing => new PlayingActions(this);
+
+    // Paused
+    private readonly InputActionMap m_Paused;
+    private List<IPausedActions> m_PausedActionsCallbackInterfaces = new List<IPausedActions>();
+    private readonly InputAction m_Paused_pause;
+    public struct PausedActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public PausedActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @pause => m_Wrapper.m_Paused_pause;
+        public InputActionMap Get() { return m_Wrapper.m_Paused; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PausedActions set) { return set.Get(); }
+        public void AddCallbacks(IPausedActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PausedActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PausedActionsCallbackInterfaces.Add(instance);
+            @pause.started += instance.OnPause;
+            @pause.performed += instance.OnPause;
+            @pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IPausedActions instance)
+        {
+            @pause.started -= instance.OnPause;
+            @pause.performed -= instance.OnPause;
+            @pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IPausedActions instance)
+        {
+            if (m_Wrapper.m_PausedActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPausedActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PausedActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PausedActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PausedActions @Paused => new PausedActions(this);
+    public interface IPlayingActions
     {
         void OnLeftHandMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRightHandMove(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPausedActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

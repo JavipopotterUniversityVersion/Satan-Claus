@@ -9,7 +9,8 @@ public enum CanvasType
     MainMenu,
     CookingMenu,
     DialogMenu,
-    CleaningMenu
+    CleaningMenu,
+    CafeSection
 }
 
 
@@ -31,6 +32,8 @@ public class SectionManager : MonoBehaviour
             GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
             GameManager.GM.OnStateExit.AddListener(OnStateExit);
         }
+
+        GameManager.GM.ChangeStateOfGame(GameState.MainMenu);
     }
 
     void ActivateCanvas(CanvasType desiredType)
@@ -69,6 +72,7 @@ public class SectionManager : MonoBehaviour
         switch(state)
         {
             case GameState.MainMenu:
+                ActivateCanvas(CanvasType.CafeSection);
                 DeactivateCanvas(CanvasType.MainMenu);
                 break;
             case GameState.Dialog:
@@ -80,6 +84,9 @@ public class SectionManager : MonoBehaviour
             case GameState.Cleaning:
                 DeactivateCanvas(CanvasType.CleaningMenu);
                 break;
+            case GameState.Paused:
+                DeactivateCanvas(CanvasType.Menu);
+                break;
         }
     }
     void OnStateEnter(GameState state)
@@ -87,6 +94,7 @@ public class SectionManager : MonoBehaviour
         switch(state)
         {
             case GameState.MainMenu:
+                DeactivateAllCanvases();
                 ActivateCanvas(CanvasType.MainMenu);
                 break;
             case GameState.Dialog:
@@ -97,6 +105,9 @@ public class SectionManager : MonoBehaviour
                 break;
             case GameState.Cleaning:
                 ActivateCanvas(CanvasType.CleaningMenu);
+                break;
+            case GameState.Paused:
+                ActivateCanvas(CanvasType.Menu);
                 break;
         }   
     }

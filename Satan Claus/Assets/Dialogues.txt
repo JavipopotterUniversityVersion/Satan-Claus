@@ -1,6 +1,6 @@
 Belcebu//
 [SC]Belcebu[SC]*
-Ufff, pon me algo por favor.*
+Ufff, ponme algo por favor.*
 
 [SC]LeftHand[SC]*
 ¿Lo de siempre, verdad? *
@@ -56,7 +56,7 @@ Bajan sin haber hecho nada, solo "buno", "bien", "nose"*
 y no hay historias interesantes.*
 
 [SC]LeftHand[SC]*
-TomaBelcebú, si te sirve de consuelo*
+Toma Belcebú, si te sirve de consuelo*
 Las almas en pena, cada vez son más numerosas.*
 
 [SC]Belcebu[SC]*
@@ -65,7 +65,7 @@ Necesito algo que me amenice los días.*
 
 [SC]RightHand[SC]*
 ¿Quieres un amigo? *
-Raro sería en nuestro viejoBelcebú.*
+Raro sería en nuestro viejo Belcebú.*
 
 [SC]LeftHand[SC]*
 Supongo que todos merecemos eso.*
@@ -98,7 +98,7 @@ Una motocicleta con motosierras.*
 Como esa película tan chula.*
 
 [SC]LeftHand[SC]*
-¿Gandí? *
+¿Gandí?*
 
 [SC]Belcebu[SC]*
 No, ni os habéis acercado.*
@@ -145,6 +145,7 @@ No me digas más, lava de almas.*
 [SC]Nyarlatotep[SC]*
 Con un extra de almas, por favor.*
 Hoy ha sido un día agotador.*
+[END]*
 
 ___NyarlatotepServed//
 
@@ -226,16 +227,18 @@ Gracias por el café, me voy a poner en marcha.*
 [END]*
 
 ___GameDeveloper//
-[SC]GameDeveloper[SC]
+[SC]GameDeveloper[SC]*
 Buenas tardes, vamos al grano.*
 
 [SC]RightHand[SC]*
 Esto es una cafetería, no hay granos.*
 Solo almas y sangre.*
 
-[SC]GameDeveloper[SC]
-Sírveme las almas.*
+[SC]GameDeveloper[SC]*
+Sírveme las almas con sal.*
 Es lo que voy a comer si no acabo esto pronto.*
+
+[END]*
 
 ___GameDeveloperServed//
 
@@ -333,3 +336,12 @@ Gracias, sois muy de ayuda, glup.*
 
 [SERVED]*
 [END]*
+
+___End//
+[SC]RightHand[SC]*
+Gracias por jugar*
+[VOICE]demonic_beep[VOICE]*
+El final no tardará en llegar*
+[VOICE]mic_beep[VOICE]*
+Adiós :)*
+[QUIT]*

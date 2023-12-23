@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public enum GameState
 {
     MainMenu,
+    Paused,
     Cafe,
     Dialog,
     Cooking,
@@ -17,7 +18,23 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
-    GameState stateHolder;
+    GameState _stateHolder;
+    GameState stateHolder
+    {
+        get { return _stateHolder; }
+        set
+        {
+            if(value == GameState.stateHolder)
+            {
+                _stateHolder = GameState.Cafe;
+                print("You can't set the stateHolder to stateHolder");
+            }
+            else
+            {
+                _stateHolder = value;
+            }
+        }
+    }
     GameState gameState;
     public GameState newState;
     [HideInInspector] public UnityEvent<GameState> OnStateEnter;
@@ -25,23 +42,24 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         GM = this;
+        Screen.SetResolution(1920, 1080, true);
         OnStateEnter = new UnityEvent<GameState>();
         OnStateExit = new UnityEvent<GameState>();
-    }
-
-    private void Start() {
-        AudioManager.instance.Play("InGame");
     }
 
     public void ChangeStateOfGame(GameState newState)
     {
         this.newState = newState;
+
         OnStateExit?.Invoke(gameState);
 
         switch(newState)
         {
             case GameState.stateHolder:
                 ChangeStateOfGame(stateHolder);
+                break;
+            case GameState.End:
+                DialoguesManager.dialoguesManager.ExecuteDialogViaKey("End");
                 break;
         }
 

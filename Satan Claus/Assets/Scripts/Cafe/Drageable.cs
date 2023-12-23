@@ -20,7 +20,20 @@ public class Drageable : MonoBehaviour
 	public bool m_DrawDragLine = true;
 	public Color m_Color = Color.cyan;
 
-	public TargetJoint2D m_TargetJoint;
+	TargetJoint2D _m_TargetJoint;
+	TargetJoint2D m_TargetJoint
+	{
+		get
+		{
+			return _m_TargetJoint;
+		}
+		set
+		{
+			_m_TargetJoint = value;
+			OnDrag.Invoke (_m_TargetJoint != null);
+		}
+	}
+
 
 	public UnityEvent<bool> OnDrag;
 
@@ -44,7 +57,6 @@ public class Drageable : MonoBehaviour
 				return;
 
 			// Add a target joint to the Rigidbody2D GameObject.
-			OnDrag?.Invoke(true);
 			m_TargetJoint = body.gameObject.AddComponent<TargetJoint2D> ();
 			m_TargetJoint.dampingRatio = m_Damping;
 			m_TargetJoint.frequency = m_Frequency;
@@ -53,12 +65,7 @@ public class Drageable : MonoBehaviour
 			m_TargetJoint.anchor = m_TargetJoint.transform.InverseTransformPoint (worldPos);		
 		}
 		else if (Input.GetMouseButtonUp (0))
-		{
-			if(m_TargetJoint != null)
-			{
-				OnDrag?.Invoke(false);
-			}
-			
+		{	
 			Destroy (m_TargetJoint);
 			m_TargetJoint = null;
 			return;

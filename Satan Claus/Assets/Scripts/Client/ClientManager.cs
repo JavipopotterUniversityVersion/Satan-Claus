@@ -7,32 +7,24 @@ public class ClientManager : MonoBehaviour
     [SerializeField] ClientBehaviour[] clients;
     int currentClient = 0;
 
+    private void OnEnable() {
+        currentClient = 0;
+        StartCoroutine(SetNewClient());
+    }
+
     private void Start() {
-        GameManager.GM.OnStateExit.AddListener(OnStateExit);
+        FindObjectOfType<RubbishBin>(true).OnRubbishCleaned.AddListener(OnRubbishCleaned);
 
         foreach(ClientBehaviour client in clients)
         {
             client.transform.position = transform.position;
         }
-
-        StartCoroutine(SetNewClient());
     }
 
     void OnRubbishCleaned()
     {
         currentClient++;
-        clients[currentClient].gameObject.SetActive(true);
-    }
-
-    void OnStateExit(GameState state)
-    {
-        switch(state)
-        {
-            case GameState.Cleaning:
-                OnRubbishCleaned();
-                StartCoroutine(SetNewClient());
-                break;
-        }
+        StartCoroutine(SetNewClient());
     }
 
     IEnumerator SetNewClient()

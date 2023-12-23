@@ -6,6 +6,7 @@ public class GameTableDestroyer : MonoBehaviour
 {
     [SerializeField] GameObject rubbish;
     [SerializeField] GameObject brokenTable;
+    [SerializeField] RubbishInfo rubbishInfo;
     private int hits = 0;
     
     public void GenerateSomeRubbish()
@@ -14,6 +15,7 @@ public class GameTableDestroyer : MonoBehaviour
 
         for (int i = 0; i < random; i++)
         {
+            rubbishInfo.rubbishCount++;
             GenerateRubbish();
         }
     }
@@ -34,6 +36,6 @@ public class GameTableDestroyer : MonoBehaviour
     public void DestroyTable()
     {
         Instantiate(brokenTable, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        gameObject.transform.position = new Vector3(1000, 1000, 0);
     }
 }

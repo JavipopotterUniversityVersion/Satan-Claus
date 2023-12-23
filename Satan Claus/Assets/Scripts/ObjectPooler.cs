@@ -14,12 +14,7 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] Transform gameElementsContainer;
     List<List<GameObject>> objects;
     private void Awake() {
-        objects = new List<List<GameObject>>()
-        {
-            new List<GameObject>(),
-            new List<GameObject>(),
-            new List<GameObject>()
-        };
+        objects = new List<List<GameObject>>();
 
         if(pooler == null)
         {
@@ -37,6 +32,7 @@ public class ObjectPooler : MonoBehaviour
     {
         for(int a = 0; a < OBJECTS_TO_INSTANTIATE.Length; a++)
         {
+            objects.Add(new List<GameObject>());
             for(int quantity = 0; quantity < 1000; quantity++)
             {
                 var obj = Instantiate(OBJECTS_TO_INSTANTIATE[a], gameElementsContainer);

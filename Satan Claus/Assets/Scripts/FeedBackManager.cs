@@ -5,7 +5,7 @@ using UnityEngine;
 public class FeedBackManager : MonoBehaviour
 {
     [SerializeField] GameObject interactableFeedback;
-    public List<Vector3> interactables = new List<Vector3>();
+    [HideInInspector] public List<Vector3> interactables = new List<Vector3>();
     bool _canInteract = true;
     bool canInteract
     {
@@ -17,8 +17,8 @@ public class FeedBackManager : MonoBehaviour
         }
     }
 
-    private void Start() {
-        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
+    private void OnEnable() {
+        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>(true))
         {
             interaction.CanInteract.AddListener(GetInteractable);
             interaction.CantInteract.AddListener(RemoveInteractable);
@@ -28,8 +28,8 @@ public class FeedBackManager : MonoBehaviour
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
     }
 
-    private void OnDestroy() {
-        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
+    private void OnDisable() {
+        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>(true))
         {
             interaction.CanInteract.RemoveListener(GetInteractable);
             interaction.CantInteract.RemoveListener(RemoveInteractable);

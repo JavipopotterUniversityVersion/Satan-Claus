@@ -8,7 +8,6 @@ public enum TypeOfDrop
 
 public class Drop : MonoBehaviour
 {
-    Light2D dropLight;
     [SerializeField] TypeOfDrop _type;
     float timer = 3;
     Container container;
@@ -21,16 +20,6 @@ public class Drop : MonoBehaviour
             {
                 container.numberOfDrops[(int) _type]--;
                 container.numberOfDrops[(int) value]++;
-            }
-
-            switch(value)
-            {
-                case TypeOfDrop.lava:
-                    dropLight.color = new Color(1f, 0.36f, 0f);
-                    break;
-                case TypeOfDrop.souls:
-                    dropLight.color = Color.green;
-                    break;
             }
 
             _type = value;
@@ -53,7 +42,6 @@ public class Drop : MonoBehaviour
     private void Start() {
         GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
-        dropLight = GetComponentInChildren<Light2D>();
     }
 
     void OnStateEnter(GameState state)
@@ -84,6 +72,7 @@ public class Drop : MonoBehaviour
         {
             if(other.gameObject == container.gameObject)
             {
+                AudioManager.instance.PlayOneShot("gulup");
                 container.numberOfDrops[(int) type]--;
                 container = null;
             }

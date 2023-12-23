@@ -7,17 +7,18 @@ using UnityEngine;
 [RequireComponent(typeof(ClientDialogHandler))]
 public class ClientBehaviour : MonoBehaviour
 {
-    Vector2 targetPosition;
+    Transform targetPosition;
     Vector2 originalPosition;
-    [SerializeField] GameObject rubbish;
     HandMovement handMovement;
     AnimationManager an;
     Collider2D col;
     bool isServed = false;
+    StateChangerInteractable table;
 
     private void Awake() {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("target");
-        targetPosition = objects[UnityEngine.Random.Range(0, objects.Length)].transform.position;
+        table = GameObject.FindGameObjectWithTag("table").GetComponent<StateChangerInteractable>();
+        targetPosition = objects[UnityEngine.Random.Range(0, objects.Length)].transform;
 
         col = GetComponent<Collider2D>();
         an = GetComponent<AnimationManager>();
@@ -31,13 +32,13 @@ public class ClientBehaviour : MonoBehaviour
         DialoguesManager.dialoguesManager.servedEvent.AddListener(LeaveRubbish);
 
         isServed = false;
-        handMovement.Move(MathF.Sign(targetPosition.x - transform.position.x));
+        handMovement.Move(MathF.Sign(targetPosition.position.x - transform.position.x));
     }
 
     private void Update() {
-        if(Mathf.Abs(transform.position.x - targetPosition.x) < 0.1f && !isServed && (Vector2)transform.position != targetPosition )
+        if(Mathf.Abs(transform.position.x - targetPosition.position.x) < 0.1f && !isServed && transform.position != targetPosition.position )
         {
-            transform.position = targetPosition;
+            transform.position = targetPosition.position;
             handMovement.Move(0);
             an.Sit(true);
             col.enabled = true;
@@ -59,7 +60,8 @@ public class ClientBehaviour : MonoBehaviour
         an.Sit(true);
         isServed = true;
         col.enabled = false;
-        Instantiate(rubbish, targetPosition, Quaternion.identity);
+        table.gameObject.SetActive(true);
+        table.transform.position = targetPosition.position;
         handMovement.Move(1);
     }
 }

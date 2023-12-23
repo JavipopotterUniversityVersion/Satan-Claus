@@ -8,8 +8,8 @@ public class InteractionHandler : MonoBehaviour
     public List<IInteractable> interactables = new List<IInteractable>();
     bool canInteract = true;
 
-    private void Start() {
-        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
+    private void OnEnable() {
+        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>(true))
         {
             interaction.CanInteract.AddListener(GetInteractable);
             interaction.CantInteract.AddListener(RemoveInteractable);
@@ -19,8 +19,8 @@ public class InteractionHandler : MonoBehaviour
         GameManager.GM.OnStateExit.AddListener(OnStateExit);
     }
 
-    private void OnDestroy() {
-        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>())
+    private void OnDisable() {
+        foreach(InteractionManager interaction in FindObjectsOfType<InteractionManager>(true))
         {
             interaction.CanInteract.RemoveListener(GetInteractable);
             interaction.CantInteract.RemoveListener(RemoveInteractable);

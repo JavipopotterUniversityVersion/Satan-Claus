@@ -5,14 +5,17 @@ using UnityEngine;
 public class Container : MonoBehaviour
 {
     Vector2 originalPosition;
+    Quaternion originalRotation;
     public int[] numberOfDrops = new int[4];
 
     private void Awake() {
         originalPosition = transform.position;
+        originalRotation = transform.rotation;
     }
 
     private void OnEnable() {
         transform.position = originalPosition;
+        transform.rotation = originalRotation;
         ResetContainer();
     }
 

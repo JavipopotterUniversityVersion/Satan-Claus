@@ -277,6 +277,12 @@ public class DialoguesManager : MonoBehaviour
                 continue;
             }
 
+            if(line.Contains("[QUIT]"))
+            {
+                Application.Quit();
+                continue;
+            }
+
             text.text = "";
 
             if(talkingCharacter != null)

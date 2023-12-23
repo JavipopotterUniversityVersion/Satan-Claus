@@ -52,23 +52,19 @@ public class InputManager : MonoBehaviour
     {
         if(state != GameState.Cafe)
         {
-            canMove = true;
-            playerInput.enabled = true;
+            playerInput.SwitchCurrentActionMap("Playing");
         }
     }
     void OnStateEnter(GameState state)
     {
         if(state != GameState.Cafe)
         {
-            canMove = false;
-            playerInput.enabled = false;
+            playerInput.SwitchCurrentActionMap("Paused");
         }
     }
 
     public void LeftHandMovement(InputAction.CallbackContext context)
     {
-        if(!canMove) return;
-
         leftHandMovement.Move(context.ReadValue<Vector2>().x);
     }
     public void RightHandMovement(InputAction.CallbackContext context)
@@ -89,6 +85,21 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             interactionHandler.Interact();
+        }
+    }
+
+    public void PauseGame(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if(GameManager.GM.newState == GameState.Paused)
+            {
+                GameManager.GM.ChangeStateOfGame(GameState.Cafe);
+            }
+            else
+            {
+                GameManager.GM.ChangeStateOfGame(GameState.Paused);
+            }
         }
     }
 }

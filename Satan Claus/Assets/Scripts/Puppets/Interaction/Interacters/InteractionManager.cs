@@ -13,7 +13,7 @@ public abstract class InteractionManager : MonoBehaviour
         CanInteract?.Invoke(interactable);
     }
 
-    public void StopDetectingInteractable(IInteractable interactable)
+    public virtual void StopDetectingInteractable(IInteractable interactable)
     {
         CantInteract?.Invoke(interactable);
     }
